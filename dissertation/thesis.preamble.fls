@@ -1,0 +1,14 @@
+PWD /Users/harrysocool/Github/AI_dissertation/dissertation
+INPUT /usr/local/texlive/2015/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-var/web2c/pdftex/pdflatex.fmt
+INPUT thesis.preamble.tex
+OUTPUT thesis.preamble.log
+INPUT blocked.sty
+INPUT blocked.sty
+INPUT uhead.sty
+INPUT uhead.sty
+INPUT boxit.sty
+INPUT boxit.sty
+INPUT icthesis.sty
+INPUT icthesis.sty
