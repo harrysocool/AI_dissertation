@@ -5,11 +5,12 @@
 \contentsline {section}{\numberline {1.2}Literature Reviews}{1}
 \contentsline {subsection}{\numberline {1.2.1}The Early Work towards Ear Forensics by Iannarelli}{1}
 \contentsline {subsection}{\numberline {1.2.2}Burge and Burgers' method}{2}
-\contentsline {subsection}{\numberline {1.2.3}Shaped Wavelets for Ear Detection}{3}
-\contentsline {chapter}{\numberline {2}Background Theory}{5}
-\contentsline {section}{\numberline {2.1}Introduction}{5}
-\contentsline {chapter}{\numberline {3}Conclusion}{6}
-\contentsline {section}{\numberline {3.1}Summary of Thesis Achievements}{6}
-\contentsline {section}{\numberline {3.2}Applications}{6}
-\contentsline {section}{\numberline {3.3}Future Work}{6}
-\contentsline {chapter}{Bibliography}{6}
+\contentsline {subsection}{\numberline {1.2.3}Reduced Hough Transform for Ear Detection}{3}
+\contentsline {subsection}{\numberline {1.2.4}Shaped Wavelets for Ear Detection}{4}
+\contentsline {chapter}{\numberline {2}Background Theory}{6}
+\contentsline {section}{\numberline {2.1}Introduction}{6}
+\contentsline {chapter}{\numberline {3}Conclusion}{7}
+\contentsline {section}{\numberline {3.1}Summary of Thesis Achievements}{7}
+\contentsline {section}{\numberline {3.2}Applications}{7}
+\contentsline {section}{\numberline {3.3}Future Work}{7}
+\contentsline {chapter}{Bibliography}{7}
