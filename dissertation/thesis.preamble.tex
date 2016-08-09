@@ -16,6 +16,9 @@
 \newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
+% figure caption to be smaller
+\usepackage[font=small,labelfont=bf]{caption}
+
 \input{blocked.sty}
 \input{uhead.sty}
 \input{boxit.sty}
@@ -118,9 +121,10 @@
 \newcommand{\fig}[3]{
  \begin{figure}[!ht]
  \begin{center}
- \scalebox{#3}{\includegraphics{figs/#1.ps}}
- \vspace{-0.1in}
- \caption[ ]{\label{#1} #2}
+ \includegraphics[width=#3\textwidth]{figures/#1.png}
+ % \vspace{-0.1in}
+ \caption{#2}
+ \label{#1}
  \end{center}
  \end{figure}
 }

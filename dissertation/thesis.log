@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.9)  8 AUG 2016 20:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.9)  9 AUG 2016 15:41
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -441,10 +441,26 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Cskip=\skip45
 )
 \c@@todonotes@numberoftodonotes=\count116
-) (./blocked.sty)
-(./uhead.sty) (./boxit.sty) (./icthesis.sty)
-\c@definition=\count117
-\c@theorem=\count118
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen161
+\captionmargin@=\dimen162
+\captionwidth=\dimen163
+\caption@tempdima=\dimen164
+\caption@indent=\dimen165
+\caption@parindent=\dimen166
+\caption@hangindent=\dimen167
+)
+\c@ContinuedFloat=\count117
+)
+(./blocked.sty) (./uhead.sty) (./boxit.sty) (./icthesis.sty)
+\c@definition=\count118
+\c@theorem=\count119
 ) (./thesis.aux)
 \openout1 = `thesis.aux'.
 
@@ -469,14 +485,14 @@ LaTeX Font Info:    ... okay on input line 9.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: twoside 
-* h-part:(L,W,R)=(90.19518pt, 417.11752pt, 90.19518pt)
+* h-part:(L,W,R)=(90.19518pt, 450.4072pt, 56.9055pt)
 * v-part:(T,H,B)=(72.2698pt, 700.50723pt, 72.2698pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=417.11752pt
+* \textwidth=450.4072pt
 * \textheight=700.50723pt
 * \oddsidemargin=17.92519pt
-* \evensidemargin=17.92519pt
+* \evensidemargin=-15.36449pt
 * \topmargin=-37.00018pt
 * \headheight=12.0pt
 * \headsep=25.0pt
@@ -497,16 +513,16 @@ LaTeX Font Info:    ... okay on input line 9.
 
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count119
-\scratchdimen=\dimen161
+\scratchcounter=\count120
+\scratchdimen=\dimen168
 \scratchbox=\box37
-\nofMPsegments=\count120
-\nofMParguments=\count121
+\nofMPsegments=\count121
+\nofMParguments=\count122
 \everyMPshowfont=\toks34
-\MPscratchCnt=\count122
-\MPscratchDim=\dimen162
-\MPnumerator=\count123
-\makeMPintoPDFobject=\count124
+\MPscratchCnt=\count123
+\MPscratchDim=\dimen169
+\MPnumerator=\count124
+\makeMPintoPDFobject=\count125
 \everyMPtoPDFconversion=\toks35
 ) (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
@@ -564,6 +580,9 @@ Package gensymb Info: Using \Omega for \ohm on input line 9.
 Package gensymb Warning: Not defining \micro.
 
 ABD: EveryShipout initializing macros
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
+
 Overfull \vbox (56.67899pt too high) detected at line 19
  []
 
@@ -644,67 +663,79 @@ Chapter 1.
 File: figures/Iannarel_ear.png Graphic file (type png)
 
 <use figures/Iannarel_ear.png>
-Package pdftex.def Info: figures/Iannarel_ear.png used on input line 14.
-(pdftex.def)             Requested size: 125.13652pt x 199.49207pt.
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
+Package pdftex.def Info: figures/Iannarel_ear.png used on input line 13.
+(pdftex.def)             Requested size: 135.12352pt x 215.41301pt.
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+Missing character: There is no â in font cmr10!
+Missing character: There is no € in font cmr10!
+Missing character: There is no ™ in font cmr10!
+ [1
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[1
-
-
-\pgfsyspdfmark {pgfid1}{17944629}{6562925}
-\pgfsyspdfmark {pgfid4}{36671501}{6577670}
-\pgfsyspdfmark {pgfid5}{39440397}{6308973}
+\pgfsyspdfmark {pgfid1}{35215017}{8135624}
+\pgfsyspdfmark {pgfid4}{38853173}{8150369}
+\pgfsyspdfmark {pgfid5}{41622069}{7881672}
 ] <figures/burge_ear.png, id=62, 1356.06625pt x 838.13126pt>
 File: figures/burge_ear.png Graphic file (type png)
 
 <use figures/burge_ear.png>
-Package pdftex.def Info: figures/burge_ear.png used on input line 26.
-(pdftex.def)             Requested size: 291.98099pt x 180.45049pt.
-) (./background/background.tex
+Package pdftex.def Info: figures/burge_ear.png used on input line 23.
+(pdftex.def)             Requested size: 247.72533pt x 153.10794pt.
+ [2
+\pgfsyspdfmark {pgfid6}{15421133}{29077520}
+\pgfsyspdfmark {pgfid7}{272335}{29092265}
+\pgfsyspdfmark {pgfid8}{3041231}{28823568}
+ <./figures/Iannarel_ear.png>]
+<figures/banana_1.png, id=70, 1189.44376pt x 599.23875pt>
+File: figures/banana_1.png Graphic file (type png)
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+<use figures/banana_1.png>
+Package pdftex.def Info: figures/banana_1.png used on input line 28.
+(pdftex.def)             Requested size: 247.72533pt x 124.80147pt.
 
-[2
-\pgfsyspdfmark {pgfid6}{11416817}{30823658}
-\pgfsyspdfmark {pgfid7}{2454007}{30838403}
-\pgfsyspdfmark {pgfid8}{5222903}{30569706}
- <./figures/Iannarel_ear.png>] [3 <./figures/burge_ear.png>]
+<figures/banana_2.png, id=71, 1502.61375pt x 710.655pt>
+File: figures/banana_2.png Graphic file (type png)
+
+<use figures/banana_2.png>
+Package pdftex.def Info: figures/banana_2.png used on input line 32.
+(pdftex.def)             Requested size: 292.76192pt x 138.45245pt.
+) (./background/background.tex [3 <./figures/burge_ear.png> <./figures/banana_1
+.png>] [4 <./figures/banana_2.png>]
 Chapter 2.
-) (./conclusion/conclusion.tex [4
+) (./conclusion/conclusion.tex [5
 
 ]
 Chapter 3.
-) (./thesis.bbl [5
+) (./thesis.bbl [6
 
-]) [6
+]) [7
 
 ] (./thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 12906 strings out of 493089
- 257548 string characters out of 6134843
- 309612 words of memory out of 5000000
- 16070 multiletter control sequences out of 15000+600000
- 10423 words of font info for 38 fonts, out of 8000000 for 9000
+ 13974 strings out of 493089
+ 276909 string characters out of 6134843
+ 329239 words of memory out of 5000000
+ 17129 multiletter control sequences out of 15000+600000
+ 10731 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 66i,9n,76p,884b,691s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 66i,9n,94p,884b,691s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sl12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
-8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12
-.pfb>
-Output written on thesis.pdf (20 pages, 1242490 bytes).
+ts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl1
+2.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10
+.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pf
+b>
+Output written on thesis.pdf (21 pages, 1894018 bytes).
 PDF statistics:
- 109 PDF objects out of 1000 (max. 8388607)
- 74 compressed objects within 1 object stream
+ 124 PDF objects out of 1000 (max. 8388607)
+ 82 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 33 words of extra memory for PDF output out of 10000 (max. 10000000)
 
