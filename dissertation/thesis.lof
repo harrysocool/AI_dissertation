@@ -2,7 +2,9 @@
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Iannarelli’s manual ear measurement system.\relax }}{2}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Burge and Burgers' ear model method.\relax }}{3}
 \contentsline {figure}{\numberline {1.3}{\ignorespaces The process of Arbab-Zavar's method \cite {ArbabZavar:2007hr}. (b)Canny edge (c)accumulator of ellipse (d)reduce the horizontal vote\relax }}{3}
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Banana wavelets used in this method\cite {Ibrahim:2010dc} .\relax }}{4}
-\contentsline {figure}{\numberline {1.5}{\ignorespaces (a) Input image, and (b)-(i) after convolution with 8 banana filters\cite {Ibrahim:2010dc}\relax }}{5}
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Haar-like features reflects the local features\relax }}{4}
+\contentsline {figure}{\numberline {1.5}{\ignorespaces The procedure of classify ears\relax }}{4}
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Banana wavelets used in this method\cite {Ibrahim:2010dc} .\relax }}{6}
+\contentsline {figure}{\numberline {1.7}{\ignorespaces (a) Input image, and (b)-(i) after convolution with 8 banana filters\cite {Ibrahim:2010dc}\relax }}{6}
+\contentsline {figure}{\numberline {1.8}{\ignorespaces (a)Imaging setup (b)Sample captured image\relax }}{7}
+\contentsline {figure}{\numberline {1.9}{\ignorespaces (a)Ear Edge by LoG (b)False edge removal (c)ear-ROI (d)Ear-contours\relax }}{7}

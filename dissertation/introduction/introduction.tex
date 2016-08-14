@@ -32,6 +32,21 @@ Hough Transform (HT) is a very classic algorithm in image processing widely used
 Firstly, a Canny operator is applied to get a smoothed edge detected image, then the reduced HT transform reconstruct it into an accumulator space as it shown in figure \ref{arbab_1} (c). The locations of the peaks will provide the coordination of the best matching ellipse. However, there are some mismatches as well, such as the presence of the spectacles. The way to eliminate most of them is to get rid of the horizontal vote by HT, due to the ear shape is mostly a vertical ellipse in the database. 
 
 The result shows that this algorithm achieves error-free on the XM2VTS derived, 252-image database. But not that good in UND database, given that it include more backgrounds informations. When applying occlusions, despite the HT was known as tolerate to noise and imperfect, the detection accuracy still drops below 80\% after 40\% occlusion percentages and reaches 30\% at 70\% partial occlusion \cite{ArbabZavar:2007hr}. This algorithm can be seen as very successful under the condition of head profile only database, without backgrounds and large hair covers. It is a very good example of how to maximize the usage of classic methods, however the speed of detection needs to be evaluated if the algorithm needs to be improved.
+%=========================================================
+
+\subsection{Haar-like Features for Ear Detection} 
+The Haar-like feature was a very successful algorithm when applied for human face detection by Viola at 2001\cite{Viola:2001un}. Therefore, in 2009 Yuan et al.\cite{Yuan:2009js} designed an algorithm which used Haar-like features for ear detection. There are some extended asymmetric Haar-like features as in figure \ref{Yuan_1} were added as the ear structure is different from face.
+
+\figtwo{Yuan_1}{Haar-like features reflects the local features}{0.5}{Yuan_2}{The procedure of classify ears}{0.8}
+
+They trained several strong classifiers with AdaBoost algorithm and then cascaded them together into a multi-layer classifier. As all the sub-windows of the image pass through all the classifier, 
+
+\subsection{SIFT Point Matching for Ear Detection}
+Scale-invariant feature transform also known as SIFT is a famous computer vision algorithm for detecting and describing local features in images. It extract the interest point of the object in an image to provide "feature description" of the object, then a chosen distance can be used to decide if two description are the same between two images. Advantages of the SIFT for ear detection is that it is scale-invariant and not sensitive with noise and illumination.
+
+Based on the method written by Brown et al.\cite{Brown:2002is}, they try to created a homography transform between a probe image and a known gallery object image using SIFT matches. If an homography can be created, means that the probe contains the gallery object. In addition, 4 matched SIFT points were used to align if they lies in one plane , due to the unreliability of more points. Although it can provided an accurate result, a RANSAC algorithm was used to select the best match.
+
+The detection result was under the XM2VTS derived, 252-image database \unsure{database references} shown that it achieved 96\% rank-1 detection accuracy \cite{Bustard:2008ha}. However it requires the predefined galley of object image which needs a manual mask to locate the object.
 
 \subsection{Shaped Wavelets for Ear Detection}
 Due to the ear image mainly contains a lot of curvilinear structures, Ibrahim et al.\cite{Ibrahim:2010dc} convolve the image with some curved wavelet filters called "banana wavelet" shown as the figure \ref{banana_1} to perform a generalized template matching to detect the location of ear.
@@ -45,3 +60,15 @@ The Banana wavelets are a generalization of Gabor wavelets and it can be paramet
 The results demonstrate that this is a very promising methods which achieve 100\% detection rate on the XM2VTS database and above 98\% when the Gaussian noise ($\sigma = 100$) is presented. However, when testing on the SOTON database \unsure{database references} with some occlusion, the detection accuracy drop dramatically to 44.7\% with partial head and small occlusion\cite{Ibrahim:2010dc} . 
 
 Although the algorithm treat the ear as the combination of some curved lines and focus on finding those lines, it cannot achieve better detection rate when occlusion occurs. The amount of calculation must be very big due to the several fully convolution of whole image with 8 wavelet filters, but the author did not mention anything about speed. 
+
+\subsection{Active Contour for Ear Detection}
+In 2011, Kumar et al.\cite{Kumar:2011ci} tried to develop an online application which can use ear biometric as an authentication method. They build a wooden stand for acquiring the image as it shown in figure \ref{kumar_1}, so there are no extra illumination management require, the ear was captured inside a isolated box with utilized camera flash light. Which should make the detection more easy, however can not handle the real scenario image.
+
+\fig{kumar_1}{(a)Imaging setup (b)Sample captured image}{0.55}
+
+First of all, they use Gaussian classifier to detect the skin region, then apply LoG(Laplacian of Gaussian) for edge detection and remove the false edge until only ear edge left. By using the top and bottom pixel of the ear edge, they can manage to rotate the ear with reference to the vertical axis. Finally, a localized region based active contour model is applied to extract the ear part only from the ear-ROI(Region of Interest). The whole process is shown in figure \ref{kumar_2}.
+
+\fig{kumar_2}{(a)Ear Edge by LoG (b)False edge removal (c)ear-ROI (d)Ear-contours}{0.55}
+
+The database they created is 100 users with 7 pictures each. However, the detection rate from the ear-ROI is about 94.2\%, which means the correct ear-contours extract is 660 images, the blurry images and the presence of hair are the ones failed \cite{Kumar:2011ci}. As they only uses the specific controllable database, it is no doubt that this method will failed more when applying in real life images.
+

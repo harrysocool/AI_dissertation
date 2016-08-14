@@ -121,7 +121,7 @@
 \newcommand{\fig}[3]{
  \begin{figure}[!ht]
  \begin{center}
- \includegraphics[width=#3\textwidth]{figures/#1.png}
+ \includegraphics[width=#3\textwidth]{figures/#1}
  % \vspace{-0.1in}
  \caption{#2}
  \label{#1}
@@ -129,22 +129,20 @@
  \end{figure}
 }
 
-\newcommand{\figtwo}[8]{
- \begin{figure}
- \parbox[b]{#4 \textwidth}{
- \begin{center}
- \scalebox{#3}{\includegraphics{figs/#1.ps}}
- \vspace{-0.1in}
- \caption{\label{#1}#2}
- \end{center}
- }
- \hfill
- \parbox[b]{#8 \textwidth}{
- \begin{center}
- \scalebox{#7}{\includegraphics{figs/#5.ps}}
- \vspace{-0.1in}
- \caption{\label{#5}#6}
- \end{center}
- }
- \end{figure}
+\newcommand{\figtwo}[6]{
+\begin{figure}[!ht]
+\centering
+	\begin{minipage}[!ht]{0.45\textwidth}
+		\centering
+		\includegraphics[width=#3\linewidth]{figures/#1}
+ 		\caption{#2}
+ 		\label{#1}
+	\end{minipage}
+	\begin{minipage}[!ht]{0.45\textwidth}
+		\centering
+		\includegraphics[width=#6\linewidth]{figures/#4}
+ 		\caption{#5}
+ 		\label{#4}
+	\end{minipage}
+\end{figure}
 }

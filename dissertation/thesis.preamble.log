@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.9)  9 AUG 2016 15:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.9)  14 AUG 2016 17:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -700,10 +700,10 @@ or  <return>  to continue without it.
 
  
 Here is how much of TeX's memory you used:
- 147 strings out of 493089
- 1139 string characters out of 6134843
+ 146 strings out of 493089
+ 1131 string characters out of 6134843
  53199 words of memory out of 5000000
- 3719 multiletter control sequences out of 15000+600000
+ 3718 multiletter control sequences out of 15000+600000
  3640 words of font info for 14 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  10i,0n,13p,137b,14s stack positions out of 5000i,500n,10000p,200000b,80000s

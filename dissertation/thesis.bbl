@@ -39,4 +39,29 @@ B.~Arbab-Zavar, ``On guided model-based analysis for ear biometrics,'' Ph.D.
   dissertation, School of Electronics and Computer Science, University of
   Southampton, 2009.
 
+\bibitem{Viola:2001un}
+P.~Viola and M.~Jones, ``{Robust real-time object detection},''
+  \emph{International Journal of Computer Vision}, 2001.
+
+\bibitem{Yuan:2009js}
+L.~Yuan and F.~Zhang, ``{Ear detection based on improved AdaBoost algorithm},''
+  in \emph{2009 International Conference on Machine Learning and Cybernetics
+  (ICMLC)}.\hskip 1em plus 0.5em minus 0.4em\relax IEEE, 2009, pp. 2414--2417.
+
+\bibitem{Brown:2002is}
+M.~Brown and D.~Lowe, ``{Invariant Features from Interest Point Groups},'' in
+  \emph{British Machine Vision Conference 2002}.\hskip 1em plus 0.5em minus
+  0.4em\relax British Machine Vision Association, 2002, pp. 23.1--23.10.
+
+\bibitem{Bustard:2008ha}
+J.~D. Bustard and M.~S. Nixon, ``{Robust 2D Ear Registration and Recognition
+  Based on SIFT Point Matching},'' in \emph{2008 IEEE Second International
+  Conference on Biometrics: Theory, Applications and Systems}.\hskip 1em plus
+  0.5em minus 0.4em\relax IEEE, 2008, pp. 1--6.
+
+\bibitem{Kumar:2011ci}
+A.~Kumar, M.~Hanmandlu, M.~Kuldeep, and H.~M. Gupta, \emph{{Automatic Ear
+  Detection for Online Biometric Applications}}.\hskip 1em plus 0.5em minus
+  0.4em\relax IEEE, 2011.
+
 \end{thebibliography}

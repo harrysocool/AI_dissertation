@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.9)  9 AUG 2016 21:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.3.9)  14 AUG 2016 17:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -603,21 +603,12 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 11.
-)
-(./dedication/dedication.tex [3
+) [3
 
 ] [4
 
-]) (./quotes/quotes.tex [5
-
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 8--11
-
- []
-
-) [6
-
-] (./thesis.toc
+(./thesis.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -627,21 +618,22 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    Try loading font information for U+lasy on input line 4.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ulasy.fd
 File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
-) [7
-
-
-])
+))
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
- [8] (./thesis.lot)
+
+[5
+
+] [6
+
+] (./thesis.lot)
 \tf@lot=\write5
 \openout5 = `thesis.lot'.
 
- [9
+ [7
 
-
-] [10
+] [8
 
 ] (./thesis.lof
 Missing character: There is no â in font cmr12!
@@ -651,14 +643,14 @@ Missing character: There is no ™ in font cmr12!
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
- [11
+ [9
 
-] [12
+] [10
 
 ]
 (./introduction/introduction.tex
 Chapter 1.
-<figures/Iannarel_ear.png, id=55, 415.5525pt x 662.475pt>
+<figures/Iannarel_ear.png, id=47, 415.5525pt x 662.475pt>
 File: figures/Iannarel_ear.png Graphic file (type png)
 
 <use figures/Iannarel_ear.png>
@@ -676,7 +668,7 @@ Missing character: There is no ™ in font cmr10!
 \pgfsyspdfmark {pgfid1}{35215017}{8135624}
 \pgfsyspdfmark {pgfid4}{38853173}{8150369}
 \pgfsyspdfmark {pgfid5}{41622069}{7881672}
-] <figures/burge_ear.png, id=62, 1356.06625pt x 838.13126pt>
+] <figures/burge_ear.png, id=55, 1356.06625pt x 838.13126pt>
 File: figures/burge_ear.png Graphic file (type png)
 
 <use figures/burge_ear.png>
@@ -687,65 +679,93 @@ Package pdftex.def Info: figures/burge_ear.png used on input line 25.
 \pgfsyspdfmark {pgfid7}{272335}{29092265}
 \pgfsyspdfmark {pgfid8}{3041231}{28823568}
  <./figures/Iannarel_ear.png>]
-<figures/arbab_1.png, id=70, 1667.22874pt x 461.725pt>
+<figures/arbab_1.png, id=63, 1667.22874pt x 461.725pt>
 File: figures/arbab_1.png Graphic file (type png)
 
 <use figures/arbab_1.png>
 Package pdftex.def Info: figures/arbab_1.png used on input line 30.
 (pdftex.def)             Requested size: 405.36372pt x 112.26056pt.
- [3 <./figures/burge_ear.png> <./figures/arbab_1.png>] <figures/banana_1.png, i
-d=76, 1189.44376pt x 599.23875pt>
+ [3 <./figures/burge_ear.png> <./figures/arbab_1.png>] <figures/Yuan_1.png, id=
+69, 552.0625pt x 618.31pt>
+File: figures/Yuan_1.png Graphic file (type png)
+ <use figures/Yuan_1.png>
+Package pdftex.def Info: figures/Yuan_1.png used on input line 40.
+(pdftex.def)             Requested size: 101.34093pt x 113.4987pt.
+
+<figures/Yuan_2.png, id=70, 1101.11375pt x 666.49pt>
+File: figures/Yuan_2.png Graphic file (type png)
+ <use figures/Yuan_2.png>
+Package pdftex.def Info: figures/Yuan_2.png used on input line 40.
+(pdftex.def)             Requested size: 162.14609pt x 98.13861pt.
+
+[4 <./figures/Yuan_1.png> <./figures/Yuan_2.png>]
+<figures/banana_1.png, id=76, 1189.44376pt x 599.23875pt>
 File: figures/banana_1.png Graphic file (type png)
 
 <use figures/banana_1.png>
-Package pdftex.def Info: figures/banana_1.png used on input line 39.
+Package pdftex.def Info: figures/banana_1.png used on input line 54.
 (pdftex.def)             Requested size: 247.72533pt x 124.80147pt.
- [4 <./figures/banana_1.png>]
-<figures/banana_2.png, id=81, 1502.61375pt x 710.655pt>
+ [5
+\pgfsyspdfmark {pgfid11}{30961290}{23270985}
+\pgfsyspdfmark {pgfid14}{38853173}{23285730}
+\pgfsyspdfmark {pgfid15}{41622069}{23017033}
+] <figures/banana_2.png, id=80, 1502.61375pt x 710.655pt>
 File: figures/banana_2.png Graphic file (type png)
 
 <use figures/banana_2.png>
-Package pdftex.def Info: figures/banana_2.png used on input line 43.
+Package pdftex.def Info: figures/banana_2.png used on input line 58.
 (pdftex.def)             Requested size: 292.76192pt x 138.45245pt.
-) (./background/background.tex [5
-\pgfsyspdfmark {pgfid11}{27090597}{24223399}
-\pgfsyspdfmark {pgfid14}{38853173}{24238144}
-\pgfsyspdfmark {pgfid15}{41622069}{23969447}
- <./figures/banana_2.png>]
-Chapter 2.
-) (./conclusion/conclusion.tex [6
+ [6
+\pgfsyspdfmark {pgfid16}{24908925}{13608292}
+\pgfsyspdfmark {pgfid17}{272335}{13623037}
+\pgfsyspdfmark {pgfid18}{3041231}{13354340}
+ <./figures/banana_1.png> <./figures/banana_2.png>]
+<figures/kumar_1.png, id=87, 1147.28625pt x 595.22375pt>
+File: figures/kumar_1.png Graphic file (type png)
 
-]
-Chapter 3.
-) (./thesis.bbl [7
+<use figures/kumar_1.png>
+Package pdftex.def Info: figures/kumar_1.png used on input line 67.
+(pdftex.def)             Requested size: 247.72533pt x 128.51555pt.
 
-]) [8
+Overfull \hbox (6.52422pt too wide) in paragraph at lines 69--70
+[]\OT1/cmr/m/n/12 First of all, they use Gaus-sian clas-si-fier to de-tect the 
+skin re-gion, then ap-ply LoG(Laplacian
+ []
 
-] (./thesis.aux) ) 
+<figures/kumar_2.png, id=88, 769.87625pt x 314.17375pt>
+File: figures/kumar_2.png Graphic file (type png)
+
+<use figures/kumar_2.png>
+Package pdftex.def Info: figures/kumar_2.png used on input line 71.
+(pdftex.def)             Requested size: 247.72533pt x 101.09373pt.
+ [7 <./figures/kumar_1.png> <./figures/kumar_2.png>])
+(./thesis.bbl [8] [9
+
+]) [10] (./thesis.aux) ) 
 Here is how much of TeX's memory you used:
- 13986 strings out of 493089
- 277183 string characters out of 6134843
- 329252 words of memory out of 5000000
- 17140 multiletter control sequences out of 15000+600000
+ 14003 strings out of 493089
+ 277553 string characters out of 6134843
+ 329288 words of memory out of 5000000
+ 17168 multiletter control sequences out of 15000+600000
  10731 words of font info for 39 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  66i,9n,94p,884b,691s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm
-/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
-6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12
-.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.
-pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pf
-b></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb
->
-Output written on thesis.pdf (22 pages, 2300652 bytes).
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmbx12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmmi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmr12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr17.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr6.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmsl12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
+12.pfb>
+Output written on thesis.pdf (22 pages, 3564439 bytes).
 PDF statistics:
- 133 PDF objects out of 1000 (max. 8388607)
+ 141 PDF objects out of 1000 (max. 8388607)
  87 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 38 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 58 words of extra memory for PDF output out of 10000 (max. 10000000)
 
