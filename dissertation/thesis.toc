@@ -10,4 +10,4 @@
 \contentsline {subsection}{\numberline {1.2.5}SIFT Point Matching for Ear Detection}{5}
 \contentsline {subsection}{\numberline {1.2.6}Shaped Wavelets for Ear Detection}{5}
 \contentsline {subsection}{\numberline {1.2.7}Active Contour for Ear Detection}{7}
-\contentsline {chapter}{References}{8}
+\contentsline {chapter}{References}{7}

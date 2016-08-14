@@ -39,7 +39,7 @@ The Haar-like feature was a very successful algorithm when applied for human fac
 
 \figtwo{Yuan_1}{Haar-like features reflects the local features}{0.5}{Yuan_2}{The procedure of classify ears}{0.8}
 
-They trained several strong classifiers with AdaBoost algorithm and then cascaded them together into a multi-layer classifier. As all the sub-windows of the image pass through all the classifier, 
+They trained several strong classifiers with AdaBoost algorithm and then cascaded them together into a multi-layer classifier. As all the sub-windows of the image pass through each one of the single classifier, false response will immediately reject the corresponding sub-window. Only the one went through all classifiers will be marked as an ear.
 
 \subsection{SIFT Point Matching for Ear Detection}
 Scale-invariant feature transform also known as SIFT is a famous computer vision algorithm for detecting and describing local features in images. It extract the interest point of the object in an image to provide "feature description" of the object, then a chosen distance can be used to decide if two description are the same between two images. Advantages of the SIFT for ear detection is that it is scale-invariant and not sensitive with noise and illumination.
