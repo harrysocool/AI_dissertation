@@ -5,7 +5,22 @@
 This chapter will be explaining the method used in this project in order to detect the ear under a 
 
 \section{Object Proposal Methods}
-In order to locate the object (in this case the ear), classic approaches over the past decade have been scanning the whole image by sliding a window which is computational intensive and consequently consuming a lot of times. Therefore, recently this object proposal approach has become the state-of-art method for object detection in computer vision. It dramatically reducing the amount of candidate bounding boxes from tens to hundreds of thousands of locations per image into hundreds of it. Moreover, it is generalized for all object categories, unlike the classic method which is necessarily difficult to decide features for every object category.
-\subsection{Selective Search}
-\subsection{Edge Detector}
-\subsection{Binarized Normed Gradients(BING)}
+In order to locate the object (in this case the ear), classic approaches over the past decade have been scanning the whole image by sliding a window which is computational intensive and consequently consuming a lot of times. Therefore, recently this object proposal approach has become the state-of-art method for object detection in computer vision. It dramatically reducing the amount of candidate bounding boxes from tens to hundreds of thousands of locations per image into hundreds of it. Moreover, it is generalized for all object categories, unlike the classic method which is necessarily difficult to design and choose features for every object category. 
+
+\subsection{Selective Search\cite{Uijlings:2013eg}}
+One of the popular approach is Selective Search proposed by J.R.R. Uijlings et al. in 2013\cite{Uijlings:2013eg}. It has been widely used for object detection method in 2012, and the detection method based on it produced a very good result in the PASCAL VOC challenge. The main procedure of it can be described as below: 
+\begin{enumerate}
+  \itemsep=-0.5em
+  \indentitem\item Produce regions from an image based on the "Efficient GraphBased Image Segmentation"\cite{Felzenszwalb:2004bx} method.
+  \indentitem\item Computing the similarity between each region.
+  \indentitem\item Merge the most similar region.
+  \indentitem\item Keep doing the last two steps until convergences.
+  \indentitem\item Choose a Stochastic scoring method to ranking those regions and the subset of top $k$ region is the result.
+\end{enumerate}
+It also have two \textbf{diversification strategies}, one for color spaces including RGB, Lab and so on, the other is for the calculating of region similarity involving color, texture and region size. As it shown in Figure \ref{ss_1}, the step 2\&3 can be seen as producing "multiscale" of the image which allows it to present different size of object proposals.
+
+\fig{ss_1}{Example of Selective Search method on "multiscale"}{0.7}
+\improvement{the result of the ear pictures}
+\subsection{Edge Detector\cite{Zitnick:2014gi}}
+
+\subsection{Binarized Normed Gradients(BING)\cite{Cheng:2014tf}}
