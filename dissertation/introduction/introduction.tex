@@ -1,28 +1,41 @@
 %!TEX root = ../thesis.tex
 
 \chapter{Introduction}
+Human ear, as a very promising biometric identifier has drew lots of attentions in biometric communities recently \cite{Ibrahim:2011dq}. It contains sufficient curved structures which will not change radically from age 8-70 years old and are unaffected by cosmetics, unlike face \cite{Burge:2000ek}. Compare to gait, it cannot be easily changed intentionally by the subject when doing a surveillance. Which makes it a perfect and promising biometric for access control, security and video surveillance.
 
+Recently, people trends to focus on using 3D data or combine 2D with 3D data due to it can overcome the illumination and pose variation of ear recognition, although it can get much better result now, special equipment and expensive computation will be needed \cite{Yuan:2012db}. However, this manuscript will concentrate on 2D images, because of the consistency when deploy in surveillance or other planar image scenarios \cite{ArbabZavar:2011cn}.
+%====================================================
+%
+%====================================================
 \section{Motivation and Objectives}
+The main motivation for ear recognition would be the implementation of an algorithm which can automatically tell the identity of a person via only taking pictures of his ear. Such a system can then be used for security surveillance, collect crime evidences and attendance check. Combined with the state-of-art face recognition system, they can provide more accurate identification rate and be more reliable. 
 
-Motivation and Objectives here.
+For an automatic ear recognition system, it contains three main parts: ear detection, feature extraction and identification (classification). Due to the limitation of time in this project, it is better to focus on one part out of all three. Therefore, this project will concentrate on the first part \textbf{ear detection} which has very significant impact to the following procedures. For example, if the ear failed to be registered inside an image, the following steps tend to be meaningless and may cause incorrect detection rate data. 
 
+Therefore, the objective of this project can be listed below:
+\vspace{-4mm}
+\begin{itemize}
+\itemsep=-0.5em
+  \item Implement an algorithm which has good detection rate on ear images under some circumstances such as occlusion and noises which often occur in the real world scenario. 
+  \item Attempt to use state-of-art deep-learning and convolutional network methods instead of classic hand-craft feature spaces.
+  \item Reduce the time for the detection so that it can be used as a live detection.
+\end{itemize}
+\improvement{objective}
+%====================================================
+%
+%====================================================
+\section{Outline}
+\unsure{.}
+This manuscript is divided into 4 chapters which mainly covered all the informations required. 
+Chapter 1 is the introduction of the whole picture followed by the literature review comparing classic method on ear detection applications. 
+Chapter 2 introduce the methodology employed in this project including the platform specification and a brief introduction of the environment setup. 
+Chapter 3 shows the result of this method under different restrictions as it usually happened in the real world. 
+The final chapter will discuss the utility of result in the previous chapter, and perform an analysis under that.
+%====================================================
+%
+%====================================================
 \section{Literature Reviews}
-\subsection{The Early Work towards Ear Forensics by Iannarelli}
-In 1949, Alfred Iannarelli was well-known in American as an ear identification export who providing ear evidence as a strong personal identification in the context of forensic science\cite{State:1999}. He also developed a measurement system in order to representing the ear by numbers, which was used by American law enforcement agencies at that time\cite{Arbab-Zavar:2009}. As shown in Figure \ref{Iannarel_ear}, he aligned the ear into 4 reference lines which divided the image into equally 45\degree\ intervals. The intersection of those lines is located on the tragus and the crus of helix (see section 4.1 for a description of the anatomical parts of the ear)\unsure{Need change the references}, therefore the ear image can be represented based on the edge markers of each reference line.
-
-\fig{Iannarel_ear}{Iannarelli’s manual ear measurement system.}{0.3} 
-
-According to Iannarelli's book, through 38 years of research and application in earology on more than 10,000 ear images, no two ears were found to be identical, not even the two ears from the same person\cite{Arbab-Zavar:2009}.
-\unsure{Maybe more conclusion}
-
-Although this system was based on a man-power visual measurement which may be not very accurate, the usage time of the successful application has proved itself to be very useful. It also inspired a lot of researches towards ear recognition using more advanced technology later.
-
-\subsection{Burge and Burgers' method}
-In the early time of the 21st Century, Burge and Burger started to use machine vision for ear recognition system. They were the first who managed to use machine model each individual ear with an adjacency graph.
-
-The main step of their method can be shown as figure \ref{burge_ear}. They used the canny edge detection firstly to extract the "ear print", then reconstructed it into a Voronoi diagram which looks like a segmentation of the ear parts. Finally, join the center of each segment to form the "N-graph" which is used to authenticating a person.
-
-\fig{burge_ear}{Burge and Burgers' ear model method.}{0.55}
+In this section, the previous work in ear detection is presented with descriptive words. It was mainly about the classic methods which focus more on how to design the feature space then scan the whole image to match such features. However, we are implementing a novel method for ear detection which no one has done before, no related paper can be discussed in this section about it.
 
 \subsection{Reduced Hough Transform for Ear Detection}
 Hough Transform (HT) is a very classic algorithm in image processing widely used for feature extraction and patten recognition. It is useful to find the imperfect instances of objects in certain shapes which is very suitable for ear detection as the ear is just like a ellipse and remains that way. Hence, in 2007 Arbab-Zavar et al.\cite{ArbabZavar:2007hr} used it to design an algorithm for automatic ear detection. Despite the advantages, HT has certain drawbacks such as high computational requirement and memory usages, therefore they used a reduced Hough Transform to overcome those problems as it was specified for only detect ellipse using the known geometrical properties of it to decompose the parameter space from 5D to 2D.
@@ -73,4 +86,7 @@ First of all, they use Gaussian classifier to detect the skin region, then apply
 \fig{kumar_2}{(a)Ear Edge by LoG (b)False edge removal (c)ear-ROI (d)Ear-contours}{0.55}
 
 The database they created is 100 users with 7 pictures each. However, the detection rate from the ear-ROI is about 94.2\%, which means the correct ear-contours extract is 660 images, the blurry images and the presence of hair are the ones failed \cite{Kumar:2011ci}. As they only uses the specific controllable database, it is no doubt that this method will failed more when applying in real life images.
+
+\section{Contribution}
+Due to the implementation of convolutional neural network on object detection was just few years ago, no one has used it on ear image database, therefore no related work published.
 

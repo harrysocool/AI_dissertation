@@ -7,7 +7,7 @@ This chapter will be explaining the method used in this project in order to dete
 \section{Object Proposal Methods}
 In order to locate the object (in this case the ear), classic approaches over the past decade have been scanning the whole image by sliding a window which is computational intensive and consequently consuming a lot of times. Therefore, recently this object proposal approach has become the state-of-art method for object detection in computer vision. It dramatically reducing the amount of candidate bounding boxes from tens to hundreds of thousands of locations per image into hundreds of it. Moreover, it is generalized for all object categories, unlike the classic method which is necessarily difficult to design and choose features for every object category. 
 
-\subsection{Selective Search\cite{Uijlings:2013eg}}
+\subsection{Selective Search}
 One of the popular approach is Selective Search proposed by J.R.R. Uijlings et al. in 2013\cite{Uijlings:2013eg}. It has been widely used for object detection method in 2012, and the detection method based on it produced a very good result in the PASCAL VOC challenge. The main procedure of it can be described as below: 
 \begin{enumerate}
   \itemsep=-0.5em
@@ -17,10 +17,69 @@ One of the popular approach is Selective Search proposed by J.R.R. Uijlings et a
   \indentitem\item Keep doing the last two steps until convergences.
   \indentitem\item Choose a Stochastic scoring method to ranking those regions and the subset of top $k$ region is the result.
 \end{enumerate}
-It also have two \textbf{diversification strategies}, one for color spaces including RGB, Lab and so on, the other is for the calculating of region similarity involving color, texture and region size. As it shown in Figure \ref{ss_1}, the step 2\&3 can be seen as producing "multiscale" of the image which allows it to present different size of object proposals.
+It also have two \textbf{diversification strategies}, one for color spaces including RGB, Lab and so on, the other is for the calculating of region similarity involving color, texture and region size. As it shown in figure \ref{ss_1}, the step 2\&3 can be seen as producing "multiscale" of the image which allows it to present different size of object proposals.
 
 \fig{ss_1}{Example of Selective Search method on "multiscale"}{0.7}
 \improvement{the result of the ear pictures}
-\subsection{Edge Detector\cite{Zitnick:2014gi}}
+%====================================================
+%
+%====================================================
+\subsection{Edge Boxes}
+In 2014, an improved approach which based on the edge information of an image has been developed by C. Lawrence Zitnick and Pitor Doll\'ar \cite{Zitnick:2014gi}. It can produce the amount of $10^{3}$ proposals in about 0.25s. The main procedure is described below:
+\begin{enumerate}
+  \itemsep=-0.5em
+  \indentitem\item It uses "Structured Decision Forests \cite{Dollar:2015wy}" method to produce edge informations of the image.
+  \indentitem\item Use Non Maximum Suppression(NMS) to obtain a more sparse edge image.
+  \indentitem\item Grouping all the edge point into different edge groups as shown in different color in figure \ref{ed_1}.
+  \indentitem\item Calculate the affinity between edge groups using author's formula. 
+  \indentitem\item Computing object proposal score, higher score will be potential objects.
+\end{enumerate}
 
-\subsection{Binarized Normed Gradients(BING)\cite{Cheng:2014tf}}
+\fig{ed_1}{Illustration examples for the process of Edge Boxes method}{0.7}
+\improvement{result}
+%====================================================
+%
+%====================================================
+\subsection{Binarized Normed Gradients (BING)}
+This method is the fastest one among all the object proposal method recently \cite{Hosang:2014um}, it can achieve 300fps on a single laptop CPU \cite{Cheng:2014tf}.
+\begin{enumerate}
+  \itemsep=-0.5em
+  \indentitem\item Produce a series of normed gradient from the image in different scales and aspect ratios.
+  \indentitem\item Use Non Maximum Suppression(NMS) to obtain 8*8 gradient feature.
+  \indentitem\item Binarize those features in order to obtain Binarized Normed Gradient(BING) features.
+  \indentitem\item Calculate the value of objectness, use it to rank the object.
+\end{enumerate}
+
+Due to the special algorithm which transform the 8*8 BING features into a single int64 and a byte of the last row as shown in figure \ref{BING_2}. It dramatically reduced computation by avoiding 8 for-loops every time, and enable it to perform atomic operation (such as bitwise SHIFT and bitwise OR).
+
+\fig{BING_1}{Object(red) and non-object(green) (a) corresponds to normed gradients(NG) features (c) in proper scales and aspect ratios (b), a single 64D linear model (d) can be learned}{0.6}
+\fig{BING_2}{Illustration of variables: a BING feature}{0.6}
+\improvement{result}
+%====================================================
+%
+%====================================================
+\section{Deep Learning Method}
+In recent years, the using of deep convolutional neural networks (also known as deep learning method) has significantly improve the accuracy in image classification and object detection. The biggest advantage of deep learning is that no need to spend time design and decide for the specific hand-crafted features to use, which also means it can become a generalized solution for different tasks. Although the disadvantages are quite clear, it requires large amount of memories, calculation and consequently time-consuming. One of the solution now is to use GPU to calculate which accelerate the computation quite a lot.
+
+The Fast R-CNN method has been chosen for this project as a solution towards the ear detection problem, because the source code in open in public, require less time for training than the previous version (RCNN) and can modify different object proposal methods compare to the latest version (Faster R-CNN).
+
+\subsection{Fast Region-based Convolutional Network (Fast R-CNN)}
+Because the ear detection can be seen as a specific object detection task, therefore, the state-of-art method on PASCAL VOC challenge will be very useful. In 2015, Ross Girshick designed this Fast-RCNN algorithm \cite{Girshick:2015vra} based on the improvement of his previous RCNN \cite{Girshick:2014vu} method, and quickly become one of the popular method in the challenge. It reaches 70 mean Average Precision(mAP) under the dataset of PASCAL VOC 2007, and runs 9x faster than R-CNN at training-time and 200x faster at testing-time. 
+
+As it shown in figure \ref{frcnn_1}, this algorithm can be divided into 4 main steps:
+\begin{enumerate}
+  \itemsep=-0.5em
+  \indentitem\item Around $10^{3}$ object proposal boxes for each image.
+  \indentitem\item Use convolution network extract features from each proposal boxes, involving Region of Interest (ROI) projection method to prevent multiple calculation.
+  \indentitem\item Training classifier to decide whether a proposal box belong to a class. 
+  \indentitem\item For each set of overlapping proposal boxes, use a regressor to obtain the final precise location.
+\end{enumerate}
+
+Therefore, two outputs were presented as in figure \ref{frcnn_1}, one for the probability of which class, the other for the bounding box location. In this case, $ear$ and $\_\_background\_\_$ are the only two classes which actually simplified the training process. 
+
+\fig{frcnn_1}{Fast R-CNN architecture\cite{Girshick:2015vra}}{0.8}
+%====================================================
+%
+%====================================================
+\subsection{Database}
+The image database for the traning and testing procedure in this project is under the SOTON ear database \cite{database} which 
