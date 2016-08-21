@@ -69,17 +69,40 @@ Because the ear detection can be seen as a specific object detection task, there
 As it shown in figure \ref{frcnn_1}, this algorithm can be divided into 4 main steps:
 \begin{enumerate}
   \itemsep=-0.5em
-  \indentitem\item Around $10^{3}$ object proposal boxes for each image.
-  \indentitem\item Use convolution network extract features from each proposal boxes, involving Region of Interest (ROI) projection method to prevent multiple calculation.
-  \indentitem\item Training classifier to decide whether a proposal box belong to a class. 
+  \indentitem\item Object proposal boxes and ground truth object box for each image goes into the network.
+  \indentitem\item Use convolutional network to extract features from each proposal boxes, involving Region of Interest (ROI) projection method to prevent multiple calculation.
+  \indentitem\item Training classifier to decide whether a proposal box belong to one of the classes. 
   \indentitem\item For each set of overlapping proposal boxes, use a regressor to obtain the final precise location.
 \end{enumerate}
 
-Therefore, two outputs were presented as in figure \ref{frcnn_1}, one for the probability of which class, the other for the bounding box location. In this case, $ear$ and $\_\_background\_\_$ are the only two classes which actually simplified the training process. 
-
+Therefore, two outputs were presented as in figure \ref{frcnn_1}, one for the probability of which class the corresponding box is, the other for the bounding box location. 
+In this case, $ear$ and $\_\_background\_\_$ are the only two classes which actually simplified the training process. 
 \fig{frcnn_1}{Fast R-CNN architecture\cite{Girshick:2015vra}}{0.8}
+
+It is also very important to choose which pre-trained Convolutional Neural Network (CNN) shown as the middle part in figure \ref{frcnn_1} to use, different network contains different structures such as how many levels of convolution layers, pooling layers and full connecting layers.
+The author of fast-rcnn, Ross Girshick recommended to use his pre-trained (trained under PASCAL VOC dataset) models:  
+\begin{itemize}
+\itemsep=-0.5em
+  \item \textbf{CaffeNet} refer to author as essentially "AlexNet" which is the first CNN invented by Hinton et al. \cite{Krizhevsky:2012wl}. This is a small one compare to others.
+  \item \textbf{VGG\_CNN\_M\_1024} which has the same depth as CaffeNet, but the architecture is wider \cite{Chatfield:2014dl}, referred as medium size.
+  \item \textbf{VGG16} is a very deep model from Karen Simonyan \cite{Simonyan:2014ws} in 2015. This is the largest model.
+\end{itemize}
+
+Due to the limitation of the current GPU hardware we have as described in appendix \change{appendix of laptop} and the amount of training time we are willing to tolerate, the small one "CaffeNet" has been chosen as our network.
+However, the full training time of 40,000 iteration (as recommended) on the database of our choice in section 2.2.2 is still up to 6 hours. 
+
 %====================================================
 %
 %====================================================
 \subsection{Database}
-The image database for the traning and testing procedure in this project is under the SOTON ear database \cite{database} which 
+This project uses the ear image database obtained by University of Southampton gait lab \cite{database}.
+It covers more than 400 people’s profile of gait, face and ear while they walking pass a tunnel. 
+Therefore the ear images was collected in an unconstrained way, as subjects walking pasted a camera. 
+The illumination while capturing pictures is also not very good as shown in figure \ref{database_1}, moreover, the tunnel has some painted background used for camera calibration which also make it more challenge for ear detection.
+But, these are good for training a robust ear detection algorithm.
+Another advantage of this database is it also contains the ear location of each image which is convenient for directly use as the ground truth in deep learning network.
+\fig{database_1}{Sample images from SOTON ear database}{0.8}
+
+The database contains totally 548 images with 2-4 images per subject, we randomly divided it into 80\% training (437 images) and 20\% testing (111 images). 
+The only augment for images while training the network is a horizontally mirror image due to the ear is pair-wised for human beings.
+
