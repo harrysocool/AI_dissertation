@@ -5,6 +5,15 @@
 \usepackage{mathchars}
 \usepackage{setspace}
 \usepackage{gensymb}
+\usepackage[titletoc]{appendix}
+
+% chapter style
+\usepackage[T1]{fontenc}
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
 
 % this part is for the todo notes
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands

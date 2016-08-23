@@ -90,11 +90,10 @@ The author of fast-rcnn, Ross Girshick recommended to use his pre-trained (train
 
 Due to the limitation of the current GPU hardware we have as described in appendix \change{appendix of laptop} and the amount of training time we are willing to tolerate, the small one "CaffeNet" has been chosen as our network.
 However, the full training time of 40,000 iteration (as recommended) on the database of our choice in section 2.2.2 is still up to 6 hours. 
-
 %====================================================
 %
 %====================================================
-\subsection{Database}
+\section{Database}
 This project uses the ear image database obtained by University of Southampton gait lab \cite{database}.
 It covers more than 400 people’s profile of gait, face and ear while they walking pass a tunnel. 
 Therefore the ear images was collected in an unconstrained way, as subjects walking pasted a camera. 
@@ -103,6 +102,6 @@ But, these are good for training a robust ear detection algorithm.
 Another advantage of this database is it also contains the ear location of each image which is convenient for directly use as the ground truth in deep learning network.
 \fig{database_1}{Sample images from SOTON ear database}{0.8}
 
-The database contains totally 548 images with 2-4 images per subject, we randomly divided it into 80\% training (437 images) and 20\% testing (111 images). 
+The database contains totally 600*800 sized 548 colour images with 2-4 images per subject, we randomly divided it into 80\% training (437 images) and 20\% testing (111 images). 
 The only augment for images while training the network is a horizontally mirror image due to the ear is pair-wised for human beings.
 
