@@ -6,6 +6,6 @@
 *.fdb_latexmk
 *.fls
 *.lot
-*.pdf
+
 *.bbl
 *.blg
