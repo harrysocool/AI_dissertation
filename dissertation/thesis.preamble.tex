@@ -5,6 +5,16 @@
 \usepackage{mathchars}
 \usepackage{setspace}
 \usepackage{gensymb}
+\usepackage{hyperref}
+\usepackage[titletoc]{appendix}
+
+% chapter style
+\usepackage[T1]{fontenc}
+\usepackage{titlesec, blindtext, color}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
 
 % this part is for the todo notes
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands
@@ -141,6 +151,26 @@
 	\begin{minipage}[!ht]{0.45\textwidth}
 		\centering
 		\includegraphics[width=#6\linewidth]{figures/#4}
+ 		\caption{#5}
+ 		\label{#4}
+	\end{minipage}
+\end{figure}
+}
+
+\newcommand{\figtwoo}[6]{
+\begin{figure}[!ht]
+\centering
+	\begin{minipage}[!ht]{0.45\textwidth}
+		\centering
+		\includegraphics[width=#3\linewidth]{figures/#1}
+ 		\caption{#2}
+ 		\label{#1}
+	\end{minipage}
+	\begin{minipage}[!ht]{0.45\textwidth}
+		\centering
+		\vspace{6mm}
+		\includegraphics[width=#6\linewidth]{figures/#4}
+		\vspace{7mm}
  		\caption{#5}
  		\label{#4}
 	\end{minipage}

@@ -1,42 +1,85 @@
 %!TEX root = ../thesis.tex
 
 \chapter{Methodology}
-
-This chapter will be explaining the method used in this project in order to detect the ear under a 
-
+This chapter will be explaining the method used in this project in order to detect the ear under a 2-Dimensional image. 
+Firstly, three object(region) proposal methods will be introduced in order to produces many category-independent and size-unfixed regions per image.
+Then the fast R-CNN algorithm for feature extraction and classification of all the regions to determine which one is the actual ear we want.
+If there are two many regions correctly classified as ear, it will perform a bounding box regression to precisely localize the box.
+Finally, the SOTON ear database is introduced.
+%====================================================
+%
+%====================================================
 \section{Object Proposal Methods}
-In order to locate the object (in this case the ear), classic approaches over the past decade have been scanning the whole image by sliding a window which is computational intensive and consequently consuming a lot of times. Therefore, recently this object proposal approach has become the state-of-art method for object detection in computer vision. It dramatically reducing the amount of candidate bounding boxes from tens to hundreds of thousands of locations per image into hundreds of it. Moreover, it is generalized for all object categories, unlike the classic method which is necessarily difficult to design and choose features for every object category. 
-
+In order to locate the object (in this case the ear), classic approaches over the past two decades have been scanning the whole image by sliding a window which is computational intensive and consequently consuming a lot of times \cite{Girshick:2014vu}. 
+Therefore, recently this object proposal approach has become the state-of-art method for object detection in computer vision. 
+It dramatically reducing the amount of candidate bounding boxes from tens to hundreds of thousands of locations per image into hundreds of it. 
+Moreover, it is generalized for all object categories, unlike the classic method which is necessarily difficult to design and choose features for every object category. 
+%====================================================
+%
+%====================================================
 \subsection{Selective Search}
-One of the popular approach is Selective Search proposed by J.R.R. Uijlings et al. in 2013\cite{Uijlings:2013eg}. It has been widely used for object detection method in 2012, and the detection method based on it produced a very good result in the PASCAL VOC challenge. The main procedure of it can be described as below: 
+It is common in the last decades that to use a sliding window for performing exhaustive search to generates region proposals.
+Although the search space was reduced by using some method such as regular grid, fixed scales, and fixed aspect ratios. 
+In most cases, it still remain huge number of locations to visit.
+Need not to mention that many of the regions is not supportive at all, because there are no rules for selection of those regions.
+Therefore, people start to design an algorithm that performs data-driven analysis on an image which can produce generalised region for only object contains in the image.
+One of the popular approach appeared in public called Selective Search proposed by J.R.R. Uijlings et al. in 2013\cite{Uijlings:2013eg}. 
+It has been widely used for object detection method in 2012, and the detection method based on it produced a very good result in the PASCAL VOC challenge.
+
+Selective search combined the best of intuitions of exhaustive search and segmentation to produce an image-driven method. 
+They consider the objects in an image as hierarchical, different size, texture and colour objects result in different layers.
+In order to capture all possible objects in different sizes, they use the "Efficient GraphBased Image Segmentation"\cite{Felzenszwalb:2004bx} method to generate segmentation of an image by different segment size parameters as shown in figure \ref{ss_1}.
+It is clearly illustrated that human and sheep can be boxed in different sized image segmentation.
+\fig{ss_1}{Example of Selective Search method on "multiscale"}{0.7}
+% \vspace{-10mm}
+Hence, the main steps of this method can be described as below: 
 \begin{enumerate}
   \itemsep=-0.5em
-  \indentitem\item Produce regions from an image based on the "Efficient GraphBased Image Segmentation"\cite{Felzenszwalb:2004bx} method.
-  \indentitem\item Computing the similarity between each region.
-  \indentitem\item Merge the most similar region.
-  \indentitem\item Keep doing the last two steps until convergences.
+  \indentitem\item Produce segmentations of image under different scales for the size of segments,
+  \indentitem\item Computing the similarity between each segment and merge the most similar region.
+  \indentitem\item Keep record of the box of regions, and keep doing last step until the whole image become a single region.
   \indentitem\item Choose a Stochastic scoring method to ranking those regions and the subset of top $k$ region is the result.
 \end{enumerate}
-It also have two \textbf{diversification strategies}, one for color spaces including RGB, Lab and so on, the other is for the calculating of region similarity involving color, texture and region size. As it shown in figure \ref{ss_1}, the step 2\&3 can be seen as producing "multiscale" of the image which allows it to present different size of object proposals.
+When computing the similarities in step 2, there are two \textbf{diversification strategies} used to increase the possibility of capturing all objects.
+One for colour spaces which including RGB, Lab, HSV and so on, in order to account for different scene and lighting conditions.
+The other one strategy for the calculating of region similarity involves colour, texture and region size. 
+In other words, small regions tends to be merged first, same colour or texture tends to be merged first as well.
 
-\fig{ss_1}{Example of Selective Search method on "multiscale"}{0.7}
-\improvement{the result of the ear pictures}
+Therefore in the application of selective search method, the choose of these strategy is an trade-off between calculation complexity and object proposal completeness.
+We performed an analysis upon this in the following section. 
 %====================================================
 %
 %====================================================
 \subsection{Edge Boxes}
-In 2014, an improved approach which based on the edge information of an image has been developed by C. Lawrence Zitnick and Pitor Doll\'ar \cite{Zitnick:2014gi}. It can produce the amount of $10^{3}$ proposals in about 0.25s. The main procedure is described below:
-\begin{enumerate}
-  \itemsep=-0.5em
-  \indentitem\item It uses "Structured Decision Forests \cite{Dollar:2015wy}" method to produce edge informations of the image.
-  \indentitem\item Use Non Maximum Suppression(NMS) to obtain a more sparse edge image.
-  \indentitem\item Grouping all the edge point into different edge groups as shown in different color in figure \ref{ed_1}.
-  \indentitem\item Calculate the affinity between edge groups using author's formula. 
-  \indentitem\item Computing object proposal score, higher score will be potential objects.
-\end{enumerate}
+One year later, a different idea of generating object proposal stands out as it not focus on generating all the potential object boxes, but hope to reduce the number of proposals left only high-quality proposals.
+According to C. Lawrence Zitnick and Pitor Doll\'ar, since object proposal method aims primarily reduce the computational cost of the detector, it should be significantly faster than the detector itself.
+Then, in 2014 an improved approach which based on the edge information of an image has been developed by them \cite{Zitnick:2014gi}. 
+It can produce the amount of $10^{3}$ proposals in about 0.25 seconds. 
+Edge, as a simple representation of an image, it can provide more informations than the segmentation.
+And it also holds computational advantages by using another edge-map producing method from Pitor Doll\'ar "Structured Forests for Fast Edge Detection" \cite{Dollar:2013ch}, it can obtains sparse edge maps. 
+
+The main idea of this method is that \textbf{the amount of contours wholly enclosed in a bounding box indicate the possibility of box containing objects.}
+Therefore, the final result of object proposals are ranked based on a score computed from the wholly enclosed contour in a candidate proposal.
+They designed an approach to calculate the magnitude and orientation of each pixel in an image, then by combining these information the affinity can be calculated for each pixel.
+As it shown in figure \ref{ed_1}, row 3, before obtaining contours the edges are formed into groups using a simple greedy method which combined 8 connected edges until their orientation differences went beyond a certain threshold.
+The small groups are automatically merged into neighbouring groups.
 
 \fig{ed_1}{Illustration examples for the process of Edge Boxes method}{0.7}
-\improvement{result}
+The main procedures of the Edge Box method can concluded as described below:
+\begin{enumerate}
+  \itemsep=-0.5em
+  \indentitem\item Structured edge detector \cite{Dollar:2013ch} was used to efficiently obtain edge informations of an image.
+  \indentitem\item A Non-Maximal Suppression (NMS) orthogonal was used to obtain a more sparse edge image.
+  \indentitem\item Grouping all the edge point into different edge groups as shown in different colour in figure \ref{ed_1}, row 3.
+  \indentitem\item Calculate the affinity between edge groups using author's formula. 
+  \indentitem\item A smart sliding window method search over position, scale and aspect ratio to obtains candidate boxes.
+  \indentitem\item Computing object proposal score for each candidate box, higher score will be potential objects.
+\end{enumerate}
+In step 5, a naive sliding window method would be prohibitively expensive.
+They proposed an very efficient method for finding intersecting edge groups based on two additional data structure.
+Due to the purpose of this project, details of it are not presented here, it can be found in \cite{Zitnick:2014gi}.
+
+\improvement{parameters tuning}
 %====================================================
 %
 %====================================================
@@ -69,17 +112,39 @@ Because the ear detection can be seen as a specific object detection task, there
 As it shown in figure \ref{frcnn_1}, this algorithm can be divided into 4 main steps:
 \begin{enumerate}
   \itemsep=-0.5em
-  \indentitem\item Around $10^{3}$ object proposal boxes for each image.
-  \indentitem\item Use convolution network extract features from each proposal boxes, involving Region of Interest (ROI) projection method to prevent multiple calculation.
-  \indentitem\item Training classifier to decide whether a proposal box belong to a class. 
+  \indentitem\item Object proposal boxes and ground truth object box for each image goes into the network.
+  \indentitem\item Use convolutional network to extract features from each proposal boxes, involving Region of Interest (ROI) projection method to prevent multiple calculation.
+  \indentitem\item Training classifier to decide whether a proposal box belong to one of the classes. 
   \indentitem\item For each set of overlapping proposal boxes, use a regressor to obtain the final precise location.
 \end{enumerate}
 
-Therefore, two outputs were presented as in figure \ref{frcnn_1}, one for the probability of which class, the other for the bounding box location. In this case, $ear$ and $\_\_background\_\_$ are the only two classes which actually simplified the training process. 
-
+Therefore, two outputs were presented as in figure \ref{frcnn_1}, one for the probability of which class the corresponding box is, the other for the bounding box location. 
+In this case, $ear$ and $\_\_background\_\_$ are the only two classes which actually simplified the training process. 
 \fig{frcnn_1}{Fast R-CNN architecture\cite{Girshick:2015vra}}{0.8}
+
+It is also very important to choose which pre-trained Convolutional Neural Network (CNN) shown as the middle part in figure \ref{frcnn_1} to use, different network contains different structures such as how many levels of convolution layers, pooling layers and full connecting layers.
+The author of fast-rcnn, Ross Girshick recommended to use his pre-trained (trained under PASCAL VOC dataset) models:  
+\begin{itemize}
+\itemsep=-0.5em
+  \item \textbf{CaffeNet} refer to author as essentially "AlexNet" which is the first CNN invented by Hinton et al. \cite{Krizhevsky:2012wl}. This is a small one compare to others.
+  \item \textbf{VGG\_CNN\_M\_1024} which has the same depth as CaffeNet, but the architecture is wider \cite{Chatfield:2014dl}, referred as medium size.
+  \item \textbf{VGG16} is a very deep model from Karen Simonyan \cite{Simonyan:2014ws} in 2015. This is the largest model.
+\end{itemize}
+
+Due to the limitation of the current GPU hardware we have as described in appendix \change{appendix of laptop} and the amount of training time we are willing to tolerate, the small one "CaffeNet" has been chosen as our network.
+However, the full training time of 40,000 iteration (as recommended) on the database of our choice in section 2.2.2 is still up to 6 hours. 
 %====================================================
 %
 %====================================================
-\subsection{Database}
-The image database for the traning and testing procedure in this project is under the SOTON ear database \cite{database} which 
+\section{Database}
+This project uses the ear image database obtained by University of Southampton gait lab \cite{database}.
+It covers more than 400 people’s profile of gait, face and ear while they walking pass a tunnel. 
+Therefore the ear images was collected in an unconstrained way, as subjects walking pasted a camera. 
+The illumination while capturing pictures is also not very good as shown in figure \ref{database_1}, moreover, the tunnel has some painted background used for camera calibration which also make it more challenge for ear detection.
+But, these are good for training a robust ear detection algorithm.
+Another advantage of this database is it also contains the ear location of each image which is convenient for directly use as the ground truth in deep learning network.
+\fig{database_1}{Sample images from SOTON ear database}{0.8}
+
+The database contains totally 600*800 sized 548 colour images with 2-4 images per subject, we randomly divided it into 80\% training (437 images) and 20\% testing (111 images). 
+The only augment for images while training the network is a horizontally mirror image due to the ear is pair-wised for human beings.
+

@@ -7,29 +7,34 @@
 
 \linespread{1.5}
 \def\submitdate#1{\gdef\@submitdate{#1}}
+\def\degreename#1{\gdef\@degreename{#1}}
 
 \def\maketitle{
   \begin{titlepage}{
-    %\linespread{1.5}
-    \Large University of London \\
+    \linespread{1.0}
+    \large University of Southampton \\
     %\linebreak
-    Imperial College of Science, Technology and Medicine \\
+    Faculty of Physical Sciences and Engineering \\
     %\linebreak
-    Department of Computing
+    School of Electronics and Computer Science
     \rm
     \vskip 3in
     \Large \bf \@title \par
   }
   \vskip 0.3in
   \par
-  {\Large \@author}
-  \vskip 4in
+  by
   \par
-  Submitted in part fulfilment of the requirements for the degree of 
-  \linebreak
-  Doctor of Philosophy in Computing of the University of London and 
-  \linebreak
-  the Diploma of Imperial College, \@submitdate
+  {\Large \bf \@author}
+  \par
+  \@submitdate
+  \vskip 3in
+  \par
+  { 
+    \large A dissertation submitted in partial fulfilment of the degree of 
+    \par
+    \large MSc. \@degreename
+  }
   \vfil
   \end{titlepage}
 }
@@ -52,7 +57,7 @@
 
 \def\abstract{
   \begin{center}{
-    \large\bf Abstract}
+    \huge \bf Abstract}
   \end{center}
   \small
   %\def\baselinestretch{1.5}
@@ -66,7 +71,7 @@
 \newenvironment{acknowledgements}{
   \cleardoublepage
   \begin{center}{
-    \large \bf Acknowledgements}
+    \huge \bf Acknowledgements}
   \end{center}
   \small
   \linespread{1.5}
@@ -98,11 +103,9 @@
 \def\body{
     \cleardoublepage    
     \pagestyle{uheadings}
+    \renewcommand{\baselinestretch}{0.75}\normalsize
     \tableofcontents
-    \pagestyle{plain}
-    \cleardoublepage
-    \pagestyle{uheadings}
-    \listoftables
+    \renewcommand{\baselinestretch}{1.0}\normalsize
     \pagestyle{plain}
     \cleardoublepage
     \pagestyle{uheadings}

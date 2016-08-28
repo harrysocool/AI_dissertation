@@ -1,42 +1,35 @@
 
 \documentclass[a4paper,12pt,twoside]{report}
 \usepackage[left=3.17cm,right=2cm,top=2.54cm,bottom=2.54cm]{geometry}
-
-
 \include{thesis.preamble}
-
 
 \begin{document}
 
-\title{\LARGE {\bf Title of my Ph.D. Thesis}\\
+\title{\LARGE {\bf Title of my MSc. Dissertation}\\
  \vspace*{6mm}
 }
 
-\author{Joe Bloggs}
-\submitdate{October 2008}
+\author{Li Sun}
+\submitdate{September 2016}
+\degreename{Artificial Intelligence}
 
-\normallinespacing
+\doublespacing
 \maketitle
 
 \preface
 \input{abstract/abstract}
 \input{acknowledgements/acknowledgements}
-% \input{dedication/dedication}
-% \input{quotes/quotes}
 
 \body
 \input{introduction/introduction}
 \input{methodology/methodology}
 \input{result/result}
+\input{conclusion/conclusion}
 
-% body of thesis comes here
+\appendix
+\input{appendix/appendix}
 
-% \input{conclusion/conclusion}
-
-\appendix{}
-% appendices come here
-
-\addcontentsline{toc}{chapter}{References}
+\addcontentsline{toc}{chapter}{Bibliography}
 
 \bibliographystyle{IEEEtran}
 \bibliography{bibliography/papers}

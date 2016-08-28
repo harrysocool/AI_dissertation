@@ -1,11 +1,25 @@
-
-\chapter{Conclusion}
-
+%!TEX root = ../thesis.tex
+\chapter{Discussion \& Conclusion}
 \label{ch:conclusions}
+The objective for this project is to apply deep learning method into ear detection and achieve a good detection rate under different circumstances. 
+In the section before, result proves the feasibility of such an algorithm by combining object proposal method with fast Region Convolutional Neural Network.
+Although the time for our algorithm is still more than 500ms per image which unable to perform a live detection, the old laptop we used is responsible for that.
+It can be easily solved by using a higher performance computer.
 
-\section{Summary of Thesis Achievements}
+\section{Summary of Project Achievements}
+In the past decades, the classic hand-craft feature matching method was dominating the ear detection, or even object detection fields. 
+It is a competition of finding the most useful features to representing ear and highlight it in an image.
+Many researchers have found their way to achieve rank-1 detection rate over 90\% or even 100\% on their chosen database \cite{Pflug:2012cja}.
+However, it is the generalization and robustness problem that prevent this technique from widely used in real world applications.
 
-Summary.
+Along with the explosion of computer performance and the successful application of Convolutional Neural Network (CNN) into object detection and classification recently.
+Although CNN was invented in 2012 by Hinton et al. \cite{Krizhevsky:2012wl}, it boosted the development in many fields not only for computer vision.
+Figure \ref{convnet_1} illustrates that it only took 2 years for CNN to almost doubled the mean Average Precision in PASCAL VOC object detection challenge.
+Theoretically, ear detection is an object detection method specifically for ear. 
+Therefore it should be easy to combined with the state-of-art CNN method in order to perform such a complexity-reduced problem, yet no record can be found on the Internet that anyone has attempt this before. 
+
+This project successfully bring the state-of-art method fast-RCNN into the first step of ear biometrics, ear detection, and achieved a rather good rank-1 100\% detection accuracy.
+We attempt to inspire the following researchers by 
 
 
 \section{Applications}
