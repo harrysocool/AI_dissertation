@@ -5,7 +5,19 @@ This chapter will include all the results produced during this project experimen
 It included the plot of time usage under each method from section 2.
 As for the simulate of real world scenario under database image, we obtained two ways which are Gaussian Noises and Partial Occlusions. 
 Different inspection methods were applied for the accuracy, robust and reliability comparison between each methods.
+%====================================================
+%
+%====================================================
+\section{Object Proposal Method Tuning}
+For each object proposal method, there are some parameters needed to be chosen in order to perform better detection accuracy.
+In order to evaluate the performance of object proposal method, we use a method called Intersection of Unit (IOU) as shown in figure \ref{IOU_1} below:
+\fig{IOU_1}{Illustration of the measurement of Intersection of Unit (IOU)}{0.5} 
 
+Because the performance of object proposal method in highly related to the number of proposal boxes which contains ear (high IOU with ground truth box).
+We calculate the IOU for every proposals and count only the one with $IOU >= 0.1$ then divided by total number of proposals to get the Potential Proposals Ratio (PPR).
+%====================================================
+%
+%====================================================
 \section{Time Usages}
 As for the three Object Proposal methods we introduced, the former two algorithms Selective Search (SS) and Edge Boxes Detector (ED) was released only in MATLAB version, but the Binarized Normed Gradients (BING) was in C++. 
 Therefore, BING will be faster with respect to the data exchange between MATLAB and the neural network will be reasonably slower.

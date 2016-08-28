@@ -20,15 +20,16 @@
 \BOOKMARK [2][-]{subsection.2.2.1}{Fast Region-based Convolutional Network \(Fast R-CNN\)}{section.2.2}% 20
 \BOOKMARK [1][-]{section.2.3}{Database}{chapter.2}% 21
 \BOOKMARK [0][-]{chapter.3}{Results}{}% 22
-\BOOKMARK [1][-]{section.3.1}{Time Usages}{chapter.3}% 23
-\BOOKMARK [1][-]{section.3.2}{Detection Rate Measurement}{chapter.3}% 24
-\BOOKMARK [2][-]{subsection.3.2.1}{Conditions for Positive Detection}{section.3.2}% 25
-\BOOKMARK [2][-]{subsection.3.2.2}{Gaussian Noise Distraction}{section.3.2}% 26
-\BOOKMARK [2][-]{subsection.3.2.3}{The Use of Partial Occlusion}{section.3.2}% 27
-\BOOKMARK [0][-]{chapter.4}{Discussion \046 Conclusion}{}% 28
-\BOOKMARK [1][-]{section.4.1}{Summary of Project Achievements}{chapter.4}% 29
-\BOOKMARK [1][-]{section.4.2}{Applications}{chapter.4}% 30
-\BOOKMARK [1][-]{section.4.3}{Future Work}{chapter.4}% 31
-\BOOKMARK [0][-]{Appendix.1.A}{Appendix Hardware \046 Software Specification}{}% 32
-\BOOKMARK [0][-]{Appendix.1.B}{Appendix }{}% 33
-\BOOKMARK [0][-]{Appendix.1.B}{Bibliography}{}% 34
+\BOOKMARK [1][-]{section.3.1}{Object Proposal Method Tuning}{chapter.3}% 23
+\BOOKMARK [1][-]{section.3.2}{Time Usages}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.3}{Detection Rate Measurement}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.1}{Conditions for Positive Detection}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.2}{Gaussian Noise Distraction}{section.3.3}% 27
+\BOOKMARK [2][-]{subsection.3.3.3}{The Use of Partial Occlusion}{section.3.3}% 28
+\BOOKMARK [0][-]{chapter.4}{Discussion \046 Conclusion}{}% 29
+\BOOKMARK [1][-]{section.4.1}{Summary of Project Achievements}{chapter.4}% 30
+\BOOKMARK [1][-]{section.4.2}{Applications}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.3}{Future Work}{chapter.4}% 32
+\BOOKMARK [0][-]{Appendix.1.A}{Appendix Hardware \046 Software Specification}{}% 33
+\BOOKMARK [0][-]{Appendix.1.B}{Appendix }{}% 34
+\BOOKMARK [0][-]{Appendix.1.B}{Bibliography}{}% 35

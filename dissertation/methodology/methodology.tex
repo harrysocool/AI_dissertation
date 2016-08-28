@@ -2,7 +2,8 @@
 
 \chapter{Methodology}
 This chapter will be explaining the method used in this project in order to detect the ear under a 2-Dimensional image. 
-Firstly, three object(region) proposal methods will be introduced in order to produces many category-independent and size-unfixed regions per image.
+Firstly, explain which approach will be used for the preprocessing of all images and why.
+Secondly, three object(region) proposal methods will be introduced in order to produces many category-independent and size-unfixed regions per image.
 Then the fast R-CNN algorithm for feature extraction and classification of all the regions to determine which one is the actual ear we want.
 If there are two many regions correctly classified as ear, it will perform a bounding box regression to precisely localize the box.
 Finally, the SOTON ear database is introduced.
@@ -14,6 +15,16 @@ In order to locate the object (in this case the ear), classic approaches over th
 Therefore, recently this object proposal approach has become the state-of-art method for object detection in computer vision. 
 It dramatically reducing the amount of candidate bounding boxes from tens to hundreds of thousands of locations per image into hundreds of it. 
 Moreover, it is generalized for all object categories, unlike the classic method which is necessarily difficult to design and choose features for every object category. 
+
+According to the survey by Jan Hosang et al. \cite{Hosang:2014um} in 2014, they evaluated 12 different object proposal methods regarding to four perspectives detection time, repeatability, recall and object detection accuracy.
+The result of their comparison was shown in figure \ref{op_1}.
+According to the comparison, BING and EdgeBoxes stood out as they are the most fast ones which can finish within 1 second.
+However, considering of the all other three features, Selective Search seems the best method.
+
+\fig{op_1}{Overview of detection proposal methods. Time is in seconds.\cite{Hosang:2014um}}{0.6}
+
+Therefore, we chosen these three methods as our candidates to performing the preprocessing of ear detection in this project.
+It will be described in detail in the flowing sections.
 %====================================================
 %
 %====================================================
@@ -46,7 +57,7 @@ The other one strategy for the calculating of region similarity involves colour,
 In other words, small regions tends to be merged first, same colour or texture tends to be merged first as well.
 
 Therefore in the application of selective search method, the choose of these strategy is an trade-off between calculation complexity and object proposal completeness.
-We performed an analysis upon this in the following section. 
+We performed an analysis upon this in the following section 3.1. 
 %====================================================
 %
 %====================================================
@@ -78,37 +89,69 @@ The main procedures of the Edge Box method can concluded as described below:
 In step 5, a naive sliding window method would be prohibitively expensive.
 They proposed an very efficient method for finding intersecting edge groups based on two additional data structure.
 Due to the purpose of this project, details of it are not presented here, it can be found in \cite{Zitnick:2014gi}.
-
-\improvement{parameters tuning}
+The model we used in this method for ear detection is trained under PASCAL VOC 2007 dataset.
 %====================================================
 %
 %====================================================
 \subsection{Binarized Normed Gradients (BING)}
-This method is the fastest one among all the object proposal method recently \cite{Hosang:2014um}, it can achieve 300fps on a single laptop CPU \cite{Cheng:2014tf}.
+In order to achieve a real-time object detection, the object proposal approach must be very fast.
+Therefore a very efficient objectness estimation which can achieve 300fps with a single laptop CPU on PASCAL VOC 2007 dataset designed by Ming-Ming Cheng shown up in 2014\cite{Cheng:2014tf}.
+This method is the fastest one among all the object proposal method recently according to Hosang's survey\cite{Hosang:2014um}.
+They also used edge information to find the object location, but in a very special way which only require a few atomic operation such as ADD, BITWISE SHIFT, etc.
+That is why this method is very fast.
+
+Very mush like Edge Boxes method, BING was motivated by the fact that if stand-alone things have well-defined closed boundaries and centres then it is highly possible to be an object.
+In order to find the generic object inside an image, they firstly took the gradient of the image and scan it over predefined scales and aspect ratio like figure \ref{BING_1} (b).
+
+\fig{BING_1}{Object(red) and non-object(green) (a) corresponds to normed gradients(NG) features (c) in proper scales and aspect ratios (b), a single 64D linear model (d) can be learned}{0.6}
+
+Then by using Non-Maximal Suppression (NMS) and some linear filter model \cite{Cheng:2014tf}, they obtained the normed 8*8 gradient (NG) features from each scaled images.
+By doing that, they declared that the NG features are insensitive to variation of scale, aspect ratio and translation.
+As it shown in figure \ref{BING_1} (c), red NG features corresponding to object ship and person while the green represent non-object.
+It shows clear correlation of the object NG features although the cruise ship and the person have huge different in terms of illumination, texture, colour, etc.
+Hence, the object NG features can be gathered to train a generalised 8*8 NG model which shown in figure \ref{BING_1} (d).
+
+The reason why the shape of 8*8 is their secret to significantly increase the speed.
+Naively, it would require a for loop to accessing 64 ($8*8=64$) positions and calculating which needs time, however they treat every feature as a int64 type number so that no need for iteration.
+The Binarization of NG feature was a work from Sam Hare in 2012 \cite{Hare:2012ec}, which transform the NG feature into Binarized NG (BING) feature as shown in figure \ref{BING_2}.
+
+\fig{BING_2}{Illustration of variables: a BING feature}{0.6}
+Hence the 64 digit of BING feature can be saved as a single int64 and its last row can be saved as a byte variable.
+All the calculation can be done by BITWISE SHIFT and BITWISE OR which is very natural computer memory operation and can be super fast.
+Finally those int64 BING features can be compared with the learned model to determine whether it is an object or not.
+The whole process can be concluded as steps below:
+
 \begin{enumerate}
   \itemsep=-0.5em
   \indentitem\item Produce a series of normed gradient from the image in different scales and aspect ratios.
   \indentitem\item Use Non Maximum Suppression(NMS) to obtain 8*8 gradient feature.
   \indentitem\item Binarize those features in order to obtain Binarized Normed Gradient(BING) features.
-  \indentitem\item Calculate the value of objectness, use it to rank the object.
+  \indentitem\item Compare BING with learned model, calculate the value of objectness, use it to rank the object proposals.
 \end{enumerate}
 
-Due to the special algorithm which transform the 8*8 BING features into a single int64 and a byte of the last row as shown in figure \ref{BING_2}. It dramatically reduced computation by avoiding 8 for-loops every time, and enable it to perform atomic operation (such as bitwise SHIFT and bitwise OR).
-
-\fig{BING_1}{Object(red) and non-object(green) (a) corresponds to normed gradients(NG) features (c) in proper scales and aspect ratios (b), a single 64D linear model (d) can be learned}{0.6}
-\fig{BING_2}{Illustration of variables: a BING feature}{0.6}
-\improvement{result}
+The implementation of this method is written on c++ which makes it even more fast.
+The model that we used for ear detection in this method is trained on PASCAL VOC 2007 dataset.
+There are not too much parameters we can tune, only the number of proposals to be generated, so we will find the most suitable one in section 3.1.
 %====================================================
 %
 %====================================================
 \section{Deep Learning Method}
-In recent years, the using of deep convolutional neural networks (also known as deep learning method) has significantly improve the accuracy in image classification and object detection. The biggest advantage of deep learning is that no need to spend time design and decide for the specific hand-crafted features to use, which also means it can become a generalized solution for different tasks. Although the disadvantages are quite clear, it requires large amount of memories, calculation and consequently time-consuming. One of the solution now is to use GPU to calculate which accelerate the computation quite a lot.
+In recent years, the using of deep convolutional neural networks (also known as deep learning method) has significantly improve the accuracy in image classification and object detection. 
+The biggest advantage of deep learning is that no need to spend time design and decide for the specific hand-crafted features to use, which also means it can become a generalized solution for different tasks. 
+Although the disadvantages are quite clear, it requires large amount of memories, calculation and consequently time-consuming. 
+One of the solution now is to use GPU to calculate which accelerate the computation quite a lot.
 
 The Fast R-CNN method has been chosen for this project as a solution towards the ear detection problem, because the source code in open in public, require less time for training than the previous version (RCNN) and can modify different object proposal methods compare to the latest version (Faster R-CNN).
 
 \subsection{Fast Region-based Convolutional Network (Fast R-CNN)}
-Because the ear detection can be seen as a specific object detection task, therefore, the state-of-art method on PASCAL VOC challenge will be very useful. In 2015, Ross Girshick designed this Fast-RCNN algorithm \cite{Girshick:2015vra} based on the improvement of his previous RCNN \cite{Girshick:2014vu} method, and quickly become one of the popular method in the challenge. It reaches 70 mean Average Precision(mAP) under the dataset of PASCAL VOC 2007, and runs 9x faster than R-CNN at training-time and 200x faster at testing-time. 
+Because the ear detection can be seen as a specific object detection task, therefore, the state-of-art method on PASCAL VOC challenge will be very useful. 
+In 2015, Ross Girshick designed this Fast-RCNN algorithm \cite{Girshick:2015vra} based on the improvement of his previous RCNN \cite{Girshick:2014vu} method, and quickly become one of the popular method in the challenge. 
+It reaches 70 mean Average Precision(mAP) under the dataset of PASCAL VOC 2007, and runs 9x faster than R-CNN at training-time and 200x faster at testing-time. 
 
+Very much like the R-CNN approach which we talked about in section 1.3.7, this fast R-CNN method reduced the multiple calculation in previous approach and combine the final box location regressor together with the CNN module.
+So that it can directly produce two result: object probability and corresponding box location.
+In R-CNN the convolution will be performed on each object proposal boxes from input which wasted lot of time due to the boxes are often overlapping.
+Then this time Ross only perform the convolution once in the beginning and then use the proposal boxes as a projecting map to obtain corresponding convolutional result.
 As it shown in figure \ref{frcnn_1}, this algorithm can be divided into 4 main steps:
 \begin{enumerate}
   \itemsep=-0.5em
@@ -119,19 +162,19 @@ As it shown in figure \ref{frcnn_1}, this algorithm can be divided into 4 main s
 \end{enumerate}
 
 Therefore, two outputs were presented as in figure \ref{frcnn_1}, one for the probability of which class the corresponding box is, the other for the bounding box location. 
-In this case, $ear$ and $\_\_background\_\_$ are the only two classes which actually simplified the training process. 
+In this case, $ear$ and $background$ are the only two classes which actually simplified the training process. 
 \fig{frcnn_1}{Fast R-CNN architecture\cite{Girshick:2015vra}}{0.8}
 
 It is also very important to choose which pre-trained Convolutional Neural Network (CNN) shown as the middle part in figure \ref{frcnn_1} to use, different network contains different structures such as how many levels of convolution layers, pooling layers and full connecting layers.
-The author of fast-rcnn, Ross Girshick recommended to use his pre-trained (trained under PASCAL VOC dataset) models:  
+The author of fast-RCNN, Ross Girshick recommended to use his pre-trained (trained under PASCAL VOC dataset) models:  
 \begin{itemize}
 \itemsep=-0.5em
-  \item \textbf{CaffeNet} refer to author as essentially "AlexNet" which is the first CNN invented by Hinton et al. \cite{Krizhevsky:2012wl}. This is a small one compare to others.
+  \item \textbf{CaffeNet} refer to author as essentially "AlexNet" which is the first CNN invented by Hinton et al. \cite{Krizhevsky:2012wl}. This is a small one compare to others but still require 1GB GPU memory.
   \item \textbf{VGG\_CNN\_M\_1024} which has the same depth as CaffeNet, but the architecture is wider \cite{Chatfield:2014dl}, referred as medium size.
   \item \textbf{VGG16} is a very deep model from Karen Simonyan \cite{Simonyan:2014ws} in 2015. This is the largest model.
 \end{itemize}
 
-Due to the limitation of the current GPU hardware we have as described in appendix \change{appendix of laptop} and the amount of training time we are willing to tolerate, the small one "CaffeNet" has been chosen as our network.
+Due to the limitation of the current GPU hardware we have as described in appendix \ref{app:appendixA} and the amount of training time we are willing to tolerate, the small one "CaffeNet" has been chosen as our network.
 However, the full training time of 40,000 iteration (as recommended) on the database of our choice in section 2.2.2 is still up to 6 hours. 
 %====================================================
 %
