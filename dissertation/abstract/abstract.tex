@@ -1,8 +1,19 @@
-
+%!TEX root = ../thesis.tex
 \addcontentsline{toc}{chapter}{Abstract}
 
 \begin{abstract}
-
-Text of the Abstract.
-
+\indent This thesis propose an approach towards robust 2D ear detection based on recent state-of-art object detection methods.
+Which mainly contains two steps: (1) producing lots of object proposals (2) convolutional neural network for classification and determine object location.
+For step (1), three object proposal methods (Selective Search, Edge boxes Detector and Binarized Normed Gradient) were compared, evaluated and tuned to obtain the most potential ear location proposals per image.
+The fast Region Convolutional Neural Network (fast R-CNN) was used in step (2) in order to obtain better detection accuracy in a relatively fast way.
+Unlike the classic method in the last decades for ear detection using self-designed HOG-like features, the convolution network now choose the features automatically.
+Which is more generalised and time saving, however it requires more computational power.
+A 548-image SOTON ear database with ear location annotation was used for the training and testing.
+In order to evaluate the robustness of our algorithm towards real world scenario pictures, two parameters were introduced.
+One is Gaussian noise due to real world low solution images such as surveillance video frame and the other is partial occlusion because of the hair and earrings usually covered part of our ear.
+The result shows that Edge boxes Detector (ED) outperform other methods and reaches rank-1 100\% detection accuracy under raw testing images.
+When add severe Gaussian noise ($\sigma=30, mean=0$), the ED can obtain more than 70\% with only 20\% false positive detection.
+More than 90\% detection rate with less than 20\% false positive can be reached while occlusion was less than 50\%, which is good compare to those classic methods.
+The detection performed by ED and fast R-CNN can be done within 0.5 seconds under an old version laptop GPU.
+We hope this first attempt of combining deep learning with ear detection can inspire following researchers towards a real-time robust ear recognition system.
 \end{abstract}

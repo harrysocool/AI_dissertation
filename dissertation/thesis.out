@@ -20,16 +20,20 @@
 \BOOKMARK [2][-]{subsection.2.2.1}{Fast Region-based Convolutional Network \(Fast R-CNN\)}{section.2.2}% 20
 \BOOKMARK [1][-]{section.2.3}{Database}{chapter.2}% 21
 \BOOKMARK [0][-]{chapter.3}{Results}{}% 22
-\BOOKMARK [1][-]{section.3.1}{Object Proposal Method Tuning}{chapter.3}% 23
-\BOOKMARK [1][-]{section.3.2}{Time Usages}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.3}{Detection Rate Measurement}{chapter.3}% 25
-\BOOKMARK [2][-]{subsection.3.3.1}{Conditions for Positive Detection}{section.3.3}% 26
-\BOOKMARK [2][-]{subsection.3.3.2}{Gaussian Noise Distraction}{section.3.3}% 27
-\BOOKMARK [2][-]{subsection.3.3.3}{The Use of Partial Occlusion}{section.3.3}% 28
-\BOOKMARK [0][-]{chapter.4}{Discussion \046 Conclusion}{}% 29
-\BOOKMARK [1][-]{section.4.1}{Summary of Project Achievements}{chapter.4}% 30
-\BOOKMARK [1][-]{section.4.2}{Applications}{chapter.4}% 31
-\BOOKMARK [1][-]{section.4.3}{Future Work}{chapter.4}% 32
-\BOOKMARK [0][-]{Appendix.1.A}{Appendix Hardware \046 Software Specification}{}% 33
-\BOOKMARK [0][-]{Appendix.1.B}{Appendix }{}% 34
-\BOOKMARK [0][-]{Appendix.1.B}{Bibliography}{}% 35
+\BOOKMARK [1][-]{section.3.1}{Object Proposal Method Parameter Tuning}{chapter.3}% 23
+\BOOKMARK [2][-]{subsection.3.1.1}{Selective Search}{section.3.1}% 24
+\BOOKMARK [2][-]{subsection.3.1.2}{Edge Boxes Detector}{section.3.1}% 25
+\BOOKMARK [2][-]{subsection.3.1.3}{BING}{section.3.1}% 26
+\BOOKMARK [1][-]{section.3.2}{Time Usages}{chapter.3}% 27
+\BOOKMARK [1][-]{section.3.3}{Detection Rate Measurement}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.3.1}{Conditions for Positive Detection}{section.3.3}% 29
+\BOOKMARK [2][-]{subsection.3.3.2}{Gaussian Noise Distraction}{section.3.3}% 30
+\BOOKMARK [2][-]{subsection.3.3.3}{The Use of Partial Occlusion}{section.3.3}% 31
+\BOOKMARK [0][-]{chapter.4}{Discussion \046 Conclusion}{}% 32
+\BOOKMARK [1][-]{section.4.1}{Summary of Project Achievements}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.2}{Future Work}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.2.1}{Real-time Detection}{section.4.2}% 35
+\BOOKMARK [2][-]{subsection.4.2.2}{Specialised Object Proposal Method}{section.4.2}% 36
+\BOOKMARK [2][-]{subsection.4.2.3}{Ear Biometrics}{section.4.2}% 37
+\BOOKMARK [0][-]{Appendix.1.A}{Appendix Hardware \046 Software Specification}{}% 38
+\BOOKMARK [0][-]{Appendix.1.A}{Bibliography}{}% 39

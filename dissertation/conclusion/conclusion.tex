@@ -2,8 +2,8 @@
 \chapter{Discussion \& Conclusion}
 \label{ch:conclusions}
 The objective for this project is to apply deep learning method into ear detection and achieve a good detection rate under different circumstances. 
-In the section before, result proves the feasibility of such an algorithm by combining object proposal method with fast Region Convolutional Neural Network.
-Although the time for our algorithm is still more than 500ms per image which unable to perform a live detection, the old laptop we used is responsible for that.
+In the section before, result proved the feasibility of such an algorithm by combining object proposal method with fast Region Convolutional Neural Network.
+Although the time for our algorithm is still more than 500ms per image which unable to perform a real-time detection, the old laptop we used is responsible for that.
 It can be easily solved by using a higher performance computer.
 
 \section{Summary of Project Achievements}
@@ -18,15 +18,33 @@ Figure \ref{convnet_1} illustrates that it only took 2 years for CNN to almost d
 Theoretically, ear detection is an object detection method specifically for ear. 
 Therefore it should be easy to combined with the state-of-art CNN method in order to perform such a complexity-reduced problem, yet no record can be found on the Internet that anyone has attempt this before. 
 
-This project successfully bring the state-of-art method fast-RCNN into the first step of ear biometrics, ear detection, and achieved a rather good rank-1 100\% detection accuracy.
-We attempt to inspire the following researchers by 
-
-
-\section{Applications}
-
-Applications.
-
-
+This project successfully bring the state-of-art method fast-RCNN into the first step of ear biometrics, ear detection, and achieved a good rank-1 100\% detection accuracy without any noise and occlusion.
+More than 90\% detection rate with less than 20\% false positive can be reached while occlusion was less than 50\%, and the add of severe Gaussian noise can cause about 30\% detection accuracy drop with 20\% false positive detection.
+We attempt to inspire the following researchers by combining deep learning method into ear biometrics fields.
+%====================================================
+%
+%====================================================
 \section{Future Work}
+This section introduce the works that we are unable to achieve in the duration of this summer project due to the time or equipment limitation.
+These work can be done in the future as an improvement of this project.
+%===========================================================
+\subsection{Real-time Detection}
+The platform we use is not good enough for the true performance of deep learning, only if we have a better GPU, we can achieve better detection accuracy and less time usage.
+Because we can train a more deep network to increase the detection accuracy, there are still two more options we can choose in section 2.2.1.
+A better GPU can also decrease the time usage, due to we can use an library "cudnn" which special designed for acceleration in computing for Nvidia GPU CUDA algorithm. 
+Therefore the real-time detection can be achieve.
+%===========================================================
+\subsection{Specialised Object Proposal Method}
+The three object proposal methods we used are all trained under the PASCAL VOC 2007 datasets.
+This dataset have 20 classes including person, bird, tv and so on, it actually was not specially designed for ear detection.
+We simply treated the ear as an object and expecting the so-called generalised object proposal method can detect the ear without training on it.
+The result shows that it did works as an generalised method.
+However, hypothesis can be made that if we train the object proposal method under the specialised ear dataset, it can achieve rather good detection rate compare to the current work we have done.
+%===========================================================
+\subsection{Ear Biometrics}
+Due to the time limit, we only achieved the first step of ear biometrics which is automatic ear detection.
+However, the next two steps \textbf{feature extraction and classification} can be done easily with the help of the convolutional neural network.
+The convolution of ear part image which already obtained inside CNN can be seen as the feature of this ear (in fact it has been used as a feature to classify whether it is an ear or just background).
+Then a Support Vector Machine (SVM) classifier can be trained to classify the ear part image in order to recognise which subject it belongs to.
 
-Future Work.
+
