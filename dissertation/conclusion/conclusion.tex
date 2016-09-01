@@ -2,7 +2,7 @@
 \chapter{Discussion \& Conclusion}
 \label{ch:conclusions}
 The objective for this project is to apply deep learning method into ear detection and achieve a good detection rate under different circumstances. 
-In the section before, result proved the feasibility of such an algorithm by combining object proposal method with fast Region Convolutional Neural Network.
+In the section before, results proved the feasibility of such an algorithm by combining object proposal method with fast Region Convolutional Neural Network.
 Although the time for our algorithm is still more than 500ms per image which unable to perform a real-time detection, the old laptop we used is responsible for that.
 It can be easily solved by using a higher performance computer.
 
@@ -12,8 +12,9 @@ It is a competition of finding the most useful features to representing ear and 
 Many researchers have found their way to achieve rank-1 detection rate over 90\% or even 100\% on their chosen database \cite{Pflug:2012cja}.
 However, it is the generalization and robustness problem that prevent this technique from widely used in real world applications.
 
-Along with the explosion of computer performance and the successful application of Convolutional Neural Network (CNN) into object detection and classification recently.
-Although CNN was invented in 2012 by Hinton et al. \cite{Krizhevsky:2012wl}, it boosted the development in many fields not only for computer vision.
+Along with the explosion of computer performance and the successful application of Convolutional Neural Network (CNN) into object detection and image classification recently.
+Although CNN was successfully applied only for object detection in 2012 by Hinton et al. \cite{Krizhevsky:2012wl}, it boosted the development in many fields such as Natural Language Processing.
+That shows the potential power of deep learning.
 Figure \ref{convnet_1} illustrates that it only took 2 years for CNN to almost doubled the mean Average Precision in PASCAL VOC object detection challenge.
 Theoretically, ear detection is an object detection method specifically for ear. 
 Therefore it should be easy to combined with the state-of-art CNN method in order to perform such a complexity-reduced problem, yet no record can be found on the Internet that anyone has attempt this before. 
@@ -39,7 +40,7 @@ The three object proposal methods we used are all trained under the PASCAL VOC 2
 This dataset have 20 classes including person, bird, tv and so on, it actually was not specially designed for ear detection.
 We simply treated the ear as an object and expecting the so-called generalised object proposal method can detect the ear without training on it.
 The result shows that it did works as an generalised method.
-However, hypothesis can be made that if we train the object proposal method under the specialised ear dataset, it can achieve rather good detection rate compare to the current work we have done.
+However, hypothesis can be made that if we train the object proposal method under the specialised ear dataset, it can achieve better detection rate compare to the current work we have done.
 %===========================================================
 \subsection{Ear Biometrics}
 Due to the time limit, we only achieved the first step of ear biometrics which is automatic ear detection.

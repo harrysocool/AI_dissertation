@@ -1,22 +1,21 @@
 %!TEX root = ../thesis.tex
-
 \chapter{Results}
 This chapter will include all the results produced during this project experiment. 
-It included the plot of time usage under each method from section 2.
+It included the parameter tuning precessing for each object (ear) proposal method and the plot of time usage under each method from section 2.
 As for the simulate of real world scenario under database image, we obtained two ways which are Gaussian Noises and Partial Occlusions. 
 Different inspection methods were applied for the accuracy, robust and reliability comparison between each methods.
 %====================================================
 %
 %====================================================
 \section{Object Proposal Method Parameter Tuning}
-For each object proposal method, there are some parameters needed to be chosen in order to perform better detection accuracy.
+For each object proposal method, there is some parameters needed to be chosen in order to perform better detection accuracy.
 In order to evaluate the performance of object proposal method, we use a method called Intersection of Unit (IOU) as shown in figure \ref{IOU_1} below.
-It calculate how many areas overlapped between the result box and ground truth box, higher value represents good accuracy.
+It calculate how many areas overlapped between the result box and ground truth box, higher value represents better accuracy.
 \fig{IOU_1}{Illustration of the measurement of Intersection of Unit (IOU)}{0.5} 
 
-Because the performance of object proposal method in highly related to the number of proposal boxes which contains ear (high IOU with ground truth box).
+Because the performance of object proposal method is highly related to the number of proposal boxes which contains ear (high IOU with ground truth box).
 We calculate the IOU for every proposals and count only the one with $IOU >= 0.1$ (as most of the proposal is inaccurate) then divided by total number of proposals to get the Potential Proposals Ratio (PPR). 
-We use the 111 images test dataset to perform this parameter tuning, therefore the averaged PPR is obtained in the following section.
+We use the 111 images test dataset to perform this parameter tuning, therefore the averaged PPR is obtained in the following sections.
 %====================================================
 \subsection{Selective Search}
 As it explained in section 2.1.1 there are several parameters we can choose in this selective search method.
@@ -26,9 +25,9 @@ Hence, only one parameter left for tuning which is the segmentation size in the 
 We experiment on different value of the parameters to find the best trade-off between accuracy (figure \ref{ss_result_1}) and time (figure \ref{ss_result_2}).
 \figtwo{ss_result_1}{Segmentation parameters vs. mean PPR and time}{1}{ss_result_2}{Segmentation parameters vs. Time}{1}
 
-The result can be found clearly in the figures above, when using single segmentation size, the corresponding time remains at around 2.3 seconds.
+The result can be found clearly in the figures above, when using single segmentation size, the corresponding time remains at around 2.5 seconds.
 The combination of several sizes will dramatically increase the time and proposal numbers, however not much increases on the mPPR.
-Only the one with 300+350 segment size produces almost the same mPPR as the highest one with 350, but it consumes twice time compare to the former, so we finally chosen the segment size parameter as 350 to maximise the mPPR with a good time cost.
+Only the one with 300+350 segment size produces almost the same mPPR as the highest one with 350, but it consumes twice time compare to the former, so we finally chosen the segment size parameter as 350 to maximise the mPPR with a small time cost.
 %====================================================
 \subsection{Edge Boxes Detector}
 For the tuning of Edge Boxes Detector method, under author's recommendation we only have one parameter to change which is the sliding window step size.
@@ -38,21 +37,21 @@ However, we can not choose the highest mPPR due to the proposal number was too s
 \figtwo{ed_result_1}{Sliding window step size vs. mean PPR and time}{1}{ed_result_2}{Sliding window step size vs. object numbers}{1}
 
 As this method holds very high mPPR (more than 0.5) compare to previous SS method which is less than 0.1, we finally decided to choose 0.65 as the step size.
-Because it have around 500 proposals per image which is sufficient for training and the mPPR is 0.68. 
+Because it have around 500 proposals per image which are sufficient for training and the mPPR is 0.68. 
 %====================================================
 \subsection{BING}
-The easiest tuning will be this BING method, because it only has one parameter to be tuned which is the output number of object proposal.
+The easiest tuning will be this BING method, because it only has one parameter to be tuned which is the output number of object proposals.
 That is why there is only one figure below, no need for the second one like previous approaches.
 And the result is very clear as well, the peak is at 400 object proposal numbers which holds 0.185 mPPR. 
 The author claimed that it is the fastest object proposal method, and we proved that no matter how the output changes it remains at around 0.5 seconds.
 \fig{BING_result_1}{object proposal number vs. mPPR and time}{0.55}
 
-Therefore we finally tuned all the object proposal method for our specific ear detection project, next section will show more specific analysis on the time consuming of this three methods. 
+Therefore we finally tuned all the object proposal method for our specific ear detection project, next section will show more specific analysis on the time consuming of these three methods. 
 %====================================================
 %
 %====================================================
 \section{Time Usages}
-As for the three Object Proposal methods we introduced, the former two algorithms Selective Search (SS) and Edge Boxes Detector (ED) was released only in MATLAB version, but the Binarized Normed Gradients (BING) was in C++. 
+As for the three Object Proposal methods we introduced, the former two algorithms Selective Search (SS) and Edge Boxes Detector (ED) were released only in MATLAB version, but the Binarized Normed Gradients (BING) was in C++. 
 Therefore, BING will be faster with respect to the data exchange between MATLAB and the neural network will be reasonably slower.
 
 By the record of a survey produced by Jan Hosang et al. \cite{Hosang:2014um}, the approximate time of these algorithms are 10, 0.3 and 0.2 seconds for SS, ED and BING. 
@@ -61,7 +60,7 @@ It can be obtained from the previous section, average time usage under 111 image
 The number of proposals under the test image dataset are plotted in figure \ref{result_time_3}.
 \begin{itemize}
 \itemsep=-0.5em
-  \item For \textbf{SS}: with the step size 350, the number of proposals produced slightly oscillate around 200.
+  \item For \textbf{SS}: with the step size 350, the number of proposals produced slightly oscillated around 200.
   \item For \textbf{ED}: the amount of proposals changes dramatically under different images, it even sometimes went under 10. The highest number can reach above 900.
   \item For \textbf{BING}: the number of proposals is fixed to 400 per image.
 \end{itemize}
@@ -73,26 +72,26 @@ Because all of our object proposal method produces less than 1000 proposal boxes
 It can be seen from figure \ref{result_time_3} that the time consuming of added fast R-CNN is almost the same as measured in section 3.1.
 However, there is two unusual peaks for BING+fast R-CNN method time usage, it is caused by the large amount of memory consuming of BING method on our laptop (appendix \ref{app:appendixA}). 
 
-Hence after several attempts and measurements, the average detection times for the 600*800 colour image in the SOTON database for those 3 methods SS, ED and BING are respectively $\textbf{2.4, 0.5 and 0.5(may be more after 100 detections) seconds}$. 
-The following detection rate measurement was all based on the tuned parameters.
+Hence after several attempts and measurements, the average detection time for the 600*800 colour image on the SOTON database for those 3 methods SS, ED and BING are respectively $\textbf{2.4, 0.5 and 0.5(may be more after 100 detections) seconds}$. 
+The following detection accuracy measurement was all based on the tuned parameters.
 %====================================================
 %
 %====================================================
-\section{Detection Rate Measurement}
+\section{Detection Accuracy Measurement}
 This section shows the results of the accuracy when performing this ear detection algorithm.
-Firstly, it described the conditions for true positive detection and present the result when performing it on testing dataset. 
-Then the noise and occlusion were applied to test the robustness and reliability of this algorithm.
+Firstly, it explained the conditions for true positive detection and present the result when appliying it on testing dataset. 
+Then the noise and occlusion were included to test the robustness and reliability of this algorithm.
 %============================================================
-\subsection{Conditions for Positive Detection}
-As it shown in figure \ref{result_1} (a), the fast-RCNN will produces many boxes along with its probability to the ear.
+\subsection{Conditions for True and False Positive Detection}
+As it shown in figure \ref{result_1} (a), the fast R-CNN will produces many boxes along with its probability to the ear.
 Therefore, we apply a simple threshold to remove the boxes with $P(ear|box)<0.8$. 
-Then the remaining boxes was filtered by a Non Maximum Suppression method for only one bounding box left.
+Then the remaining boxes were filtered by a Non-Maximal Suppression (NMS) method for only one bounding box left.
 However, sometimes it may left more than one boxes due to false positive detection.
 
 \fig{result_1}{(a) All output boxes and probability from fast-RCNN (b) threshold by $P(ear|box)>0.8$ (c) Non Maximum Suppression of left boxes (d) final result with IOU}{0.95}
 
 We use another method to measure the false positive detection, which is the Intersection of unit rate explained in section 3.1 figure \ref{IOU_1} before.
-It indicate how many area this predicting box overlapped with the ground truth box as illustrated in figure \ref{IOU_1}.
+It indicates how many areas this predicting box overlapped with the ground truth box as illustrated in figure \ref{IOU_1}.
 If the IOU rate was less than 0.5, then we determine it as a false positive detection. 
 \vspace{-4mm}
 \begin{itemize}
@@ -103,9 +102,9 @@ If the IOU rate was less than 0.5, then we determine it as a false positive dete
 \end{itemize}
 %============================================================
 \subsection{Gaussian Noise Distraction}
-In this section, we add random Gaussian noises into the raw images with 0 mean and variational $\sigma$ from 5 to 30 to stimulate the noises in real world scenario such as CCTV surveillance images. 
+In this section, we add random Gaussian noises into the raw images with 0 mean and variational $\sigma$ from 5 to 30 in order to stimulate the noises in real world scenario such as CCTV surveillance images. 
 The sample images can be seen from figure \ref{noise_1} below. 
-It illustrates how severe the noises are with different scale of $\sigma$.
+It illustrates how severe the noises are in the image with different scale of $\sigma$.
 \fig{noise_1}{Gaussian noise distraction samples by ED method}{0.95}
 
 \figtwo{noise_DR_1}{True positive detection rate under different Gaussian $\sigma$}{0.9}{noise_FPR_1}{False positive detection rate under different Gaussian $\sigma$}{0.9}
@@ -119,7 +118,7 @@ The BING method, even it constantly provided 400 object proposal boxes per image
 It only reached beyond 90\% in the raw images and with $\sigma = 5$ Gaussian noise. 
 
 Surprisingly, both BING and SS methods have an increase of detection accuracy along the increase of noise in the beginning.
-It might be because of the Gaussian noises change the number and locations of object proposal boxes, and accidentally triggered some positive detections.
+It might be because that the Gaussian noises change the number and locations of object proposal boxes, and accidentally triggered some positive detections.
 
 On the other hand, all 3 methods produced good reliability along the increase of Gaussian noises. 
 All of the False Positive Detection rate remains below 10\% except for BING at $\sigma = 30$.
@@ -137,9 +136,9 @@ As it shown below in figure \ref{occlude_1}, we test from 10\% to 50\% occlusion
 
 \fig{occlude_IOU_1}{Average of IOU rate under different occlusion percentage}{0.5}
 
-The detection rate drops dramatically when the occlusion percentages hit 50\%, however, the ED method can have more than 90\% accuracy when dealing less than 50\% occlusion with less than 20\% false positive detection.
+The detection rate drops dramatically when the occlusion percentages hit 50\%, however, the ED method can have more than 90\% accuracy when dealing with less than 50\% occlusion with less than 20\% false positive detection.
 The BING method only performs well when occlusion percentages less than 30\%, reaches more than 90\% detection accuracy.
 However, it decreases exponentially after 30\% with the rise of false positive detection rate.
-The SS method performs normally from 60\% in raw images to 10\% in 50\% occlusion images. 
+The SS method performs normally from 60\% in raw images to 10\% under 50\% occlusion images. 
 
 Despite of the low detection rate with SS method, the average IOU of it reaches the same level as the other two methods. It only drops from 80\% to 50\% alongside the increase of occlusion percentages.
